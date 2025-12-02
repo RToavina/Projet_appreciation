@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banque d'appréciations - Collège & Lycée</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #2980b9;
+            --light-color: #ecf0f1;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7ec 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        h1 {
+            margin-bottom: 10px;
+            font-size: 32px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 25px;
+            gap: 25px;
+        }
+        
+        .controls {
+            flex: 1;
+            min-width: 320px;
+            background-color: var(--light-color);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .result {
+            flex: 2;
+            min-width: 320px;
+            padding: 25px;
+            border-left: 1px solid #e0e0e0;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 15px;
+        }
+        
+        select, .checkbox-group, .textarea-group {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            background-color: white;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+        
+        select:focus, .textarea-group:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .checkbox-group {
+            max-height: 220px;
+            overflow-y: auto;
+            padding: 12px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .checkbox-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        
+        .checkbox-item:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        
+        .checkbox-item input {
+            margin-right: 10px;
+            transform: scale(1.1);
+        }
+        
+        .appreciation-display {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            min-height: 180px;
+            margin-bottom: 20px;
+            white-space: pre-wrap;
+            border-left: 4px solid var(--secondary-color);
+            font-size: 15px;
+            line-height: 1.5;
+            transition: var(--transition);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+        }
+        
+        .character-count {
+            text-align: right;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .character-count.warning {
+            color: var(--warning-color);
+        }
+        
+        .character-count.error {
+            color: var(--danger-color);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background-color: #e0e0e0;
+            border-radius: 3px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: var(--success-color);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 12px 22px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: white;
+            box-shadow: 0 2px 5px rgba(52, 152, 219, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: #95a5a6;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #219653;
+            transform: translateY(-2px);
+        }
+        
+        .examples {
+            margin-top: 30px;
+            background-color: var(--light-color);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .examples h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .example-item {
+            margin-bottom: 12px;
+            padding: 12px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            border-left: 3px solid transparent;
+        }
+        
+        .example-item:hover {
+            background-color: #dfe6e9;
+            transform: translateX(5px);
+            border-left-color: var(--secondary-color);
+        }
+        
+        .history-section {
+            margin-top: 30px;
+            background-color: var(--light-color);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .history-list {
+            max-height: 150px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+        
+        .history-item {
+            padding: 10px;
+            background-color: white;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .history-item:hover {
+            background-color: #e8f4fd;
+        }
+        
+        .custom-text-group {
+            margin-top: 20px;
+        }
+        
+        .textarea-group {
+            min-height: 80px;
+            resize: vertical;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--light-color);
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #ddd;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .result {
+                border-left: none;
+                border-top: 1px solid #ddd;
+            }
+            
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 26px;
+            }
+        }
+        
+        /* Animation pour la génération */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 0.5s ease;
+        }
+        
+        /* Style pour les icônes */
+        .icon {
+            width: 18px;
+            height: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Banque d'appréciations pour bulletins scolaires</h1>
+            <p class="subtitle">Générateur d'appréciations personnalisées pour tous les niveaux (6ème à Terminale)</p>
+        </header>
+        
+        <div class="main-content">
+            <section class="controls">
+                <div class="form-group">
+                    <label for="class-level">Niveau de la classe :</label>
+                    <select id="class-level">
+                        <option value="">Sélectionnez un niveau</option>
+                        <optgroup label="Collège">
+                            <option value="sixieme">6ème</option>
+                            <option value="cinquieme">5ème</option>
+                            <option value="quatrieme">4ème</option>
+                            <option value="troisieme">3ème</option>
+                        </optgroup>
+                        <optgroup label="Lycée">
+                            <option value="seconde">Seconde</option>
+                            <option value="premiere">Première</option>
+                            <option value="terminale">Terminale</option>
+                            <option value="terminale-spe">Terminale (Spécialité)</option>
+                        </optgroup>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="performance">Niveau de performance :</label>
+                    <select id="performance">
+                        <option value="">Sélectionnez un niveau</option>
+                        <option value="excellent">Excellent</option>
+                        <option value="tres-bien">Très bien</option>
+                        <option value="bien">Bien</option>
+                        <option value="satisfaisant">Satisfaisant</option>
+                        <option value="assez-faible">Assez faible</option>
+                        <option value="fragile">Élément fragile</option>
+                        <option value="tres-faible">Élément très faible</option>
+                        <option value="manque-travail">Manque de travail</option>
+                        <option value="insuffisant">Résultats insuffisants</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Compétences et comportements :</label>
+                    <div class="checkbox-group" id="competences">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="participation" value="participation">
+                            <label for="participation">Participation active</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="rigueur" value="rigueur">
+                            <label for="rigueur">Rigueur scientifique</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="autonomie" value="autonomie">
+                            <label for="autonomie">Autonomie</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="devoirs" value="devoirs">
+                            <label for="devoirs">Devoirs bien réalisés</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="methodologie" value="methodologie">
+                            <label for="methodologie">Bonne méthodologie</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="curiosite" value="curiosite">
+                            <label for="curiosite">Curiosité scientifique</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="resultats-baisse" value="resultats-baisse">
+                            <label for="resultats-baisse">Résultats en baisse</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="manque-rigueur" value="manque-rigueur">
+                            <label for="manque-rigueur">Manque de rigueur</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="irregularite" value="irregularite">
+                            <label for="irregularite">Travail irrégulier</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="concentration" value="concentration">
+                            <label for="concentration">Problèmes de concentration</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="soin" value="soin">
+                            <label for="soin">Travail soigné</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="investissement" value="investissement">
+                            <label for="investissement">Bon investissement</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="difficultes-bases" value="difficultes-bases">
+                            <label for="difficultes-bases">Difficultés avec les bases</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group custom-text-group">
+                    <label for="custom-text">Texte personnalisé (optionnel) :</label>
+                    <textarea id="custom-text" class="textarea-group" placeholder="Ajoutez votre propre texte ici..."></textarea>
+                </div>
+                
+                <div class="buttons">
+                    <button id="generate-btn" class="btn-primary">
+                        <svg class="icon" viewBox="0 0 24 24" fill="white">
+                            <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                        </svg>
+                        Générer l'appréciation
+                    </button>
+                    <button id="reset-btn" class="btn-secondary">
+                        <svg class="icon" viewBox="0 0 24 24" fill="white">
+                            <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                        </svg>
+                        Réinitialiser
+                    </button>
+                    <button id="copy-btn" class="btn-success">
+                        <svg class="icon" viewBox="0 0 24 24" fill="white">
+                            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                        </svg>
+                        Copier
+                    </button>
+                </div>
+            </section>
+            
+            <section class="result">
+                <h2>Appréciation générée</h2>
+                <div class="character-count" id="character-count">
+                    <span>0/255 caractères</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+                <div class="appreciation-display" id="appreciation-display">
+                    Votre appréciation apparaîtra ici après avoir sélectionné les options.
+                </div>
+                
+                <div class="examples">
+                    <h3>
+                        <svg class="icon" viewBox="0 0 24 24" fill="#2c3e50">
+                            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                        </svg>
+                        Exemples d'appréciations par niveau
+                    </h3>
+                    <div class="example-item" data-example="college">
+                        <strong>6ème-5ème :</strong> Élève sérieux(se) qui participe activement. Continue à fournir des efforts réguliers.
+                    </div>
+                    <div class="example-item" data-example="college-moyen">
+                        <strong>4ème-3ème :</strong> Résultats satisfaisants mais doit gagner en autonomie pour aborder le lycée.
+                    </div>
+                    <div class="example-item" data-example="lycee">
+                        <strong>Seconde-Première :</strong> Bon potentiel, méthodologie à consolider pour les épreuves du bac.
+                    </div>
+                    <div class="example-item" data-example="terminale">
+                        <strong>Terminale :</strong> Travail régulier et investi, préparation sérieuse pour les épreuves finales.
+                    </div>
+                </div>
+                
+                <div class="history-section">
+                    <h3>
+                        <svg class="icon" viewBox="0 0 24 24" fill="#2c3e50">
+                            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                        </svg>
+                        Historique des appréciations (5 dernières)
+                    </h3>
+                    <div class="history-list" id="history-list">
+                        <!-- L'historique sera généré ici -->
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <footer>
+            <p>Banque d'appréciations pour bulletins scolaires - Outil pédagogique pour enseignants</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const classLevelSelect = document.getElementById('class-level');
+            const performanceSelect = document.getElementById('performance');
+            const competencesCheckboxes = document.querySelectorAll('#competences input[type="checkbox"]');
+            const customTextArea = document.getElementById('custom-text');
+            const generateBtn = document.getElementById('generate-btn');
+            const resetBtn = document.getElementById('reset-btn');
+            const copyBtn = document.getElementById('copy-btn');
+            const appreciationDisplay = document.getElementById('appreciation-display');
+            const characterCount = document.getElementById('character-count');
+            const progressFill = document.getElementById('progress-fill');
+            const exampleItems = document.querySelectorAll('.example-item');
+            const historyList = document.getElementById('history-list');
+            
+            let history = [];
+            
+            // Banque d'appréciations adaptées à tous les niveaux
+            const appreciations = {
+                'excellent': {
+                    'college': [
+                        "Excellent travail tout au long du trimestre. Très investi(e) et rigoureux(se). Continue sur cette voie !",
+                        "Élève brillant(e) qui fait preuve d'une grande curiosité. Participation toujours pertinente. Félicitations !",
+                        "Performance exceptionnelle. Très bon investissement personnel et résultats remarquables."
+                    ],
+                    'lycee': [
+                        "Excellents résultats témoignant d'un travail sérieux et régulier. Continue sur cette lancée !",
+                        "Élève très investi(e) qui fait preuve d'une grande rigueur scientifique. Résultats remarquables.",
+                        "Maîtrise parfaite des concepts et méthodologie irréprochable. Très bon travail."
+                    ]
+                },
+                'tres-bien': {
+                    'college': [
+                        "Très bon trimestre. Investi(e) et sérieux(se), vous avez obtenu de très bons résultats.",
+                        "Travail de très bonne qualité. Participation active et constructive. Continue ainsi !",
+                        "Résultats très satisfaisants. Bonne maîtrise des compétences exigées pour ce niveau."
+                    ],
+                    'lycee': [
+                        "Très bon trimestre. Investissement régulier et sérieux. Résultats à la hauteur des efforts.",
+                        "Travail de très bonne qualité. Bonne maîtrise des concepts abordés. Poursuivez vos efforts !",
+                        "Résultats très satisfaisants témoignant d'un travail sérieux. Attitude positive en classe."
+                    ]
+                },
+                'bien': {
+                    'college': [
+                        "Bon trimestre. Résultats satisfaisants mais quelques irrégularités à surveiller.",
+                        "Travail sérieux dans l'ensemble. Potential à exploiter davantage par un travail plus régulier.",
+                        "Bonnes dispositions. À consolider par un investissement plus constant dans le travail."
+                    ],
+                    'lycee': [
+                        "Trimestre satisfaisant. De bons résultats mais peut encore progresser par un travail plus approfondi.",
+                        "Bonne base de travail. Potential présent qui mériterait un investissement plus régulier.",
+                        "Résultats corrects. Doit gagner en autonomie et en rigueur pour atteindre un meilleur niveau."
+                    ]
+                },
+                'satisfaisant': {
+                    'college': [
+                        "Trimestre satisfaisant. Efforts visibles mais résultats encore irréguliers. À consolider.",
+                        "Travail correct dans l'ensemble. Doit progresser en méthodologie pour être plus efficace.",
+                        "Résultats dans la moyenne. Attitude positive mais manque parfois de régularité."
+                    ],
+                    'lycee': [
+                        "Résultats satisfaisants mais en deçà du potential. Méthodologie à améliorer pour progresser.",
+                        "Trimestre correct. Doit accentuer son investissement pour obtenir de meilleurs résultats.",
+                        "Niveau satisfaisant mais irrégulier. Un travail plus constant serait bénéfique."
+                    ]
+                },
+                'assez-faible': {
+                    'college': [
+                        "Résultats assez faibles malgré des efforts visibles. Doit améliorer sa méthodologie.",
+                        "Travail irrégulier qui explique des résultats en dessous des attentes. À se concentrer davantage.",
+                        "Potential présent mais manque d'investissement régulier. Efforts supplémentaires nécessaires."
+                    ],
+                    'lycee': [
+                        "Résultats en deçà des attentes. Manque de rigueur dans l'apprentissage des concepts.",
+                        "Travail insuffisamment approfondi. Doit revoir sa méthode de travail pour progresser.",
+                        "Difficultés certaines qui nécessitent un travail plus régulier et structuré."
+                    ]
+                },
+                'fragile': {
+                    'college': [
+                        "Élève fragile qui rencontre des difficultés. Un accompagnement personnalisé serait bénéfique.",
+                        "Résultats insuffisants dus à un manque de travail régulier. Soutien nécessaire.",
+                        "Difficultés importantes qui demandent une remise à jour des bases. Travail supplémentaire indispensable."
+                    ],
+                    'lycee': [
+                        "Élève en difficulté qui doit absolument revoir ses méthodes de travail. Situation préoccupante.",
+                        "Résultats fragiles témoignant de lacunes importantes. Travail de fond nécessaire.",
+                        "Difficultés persistantes malgré le potential. Changement d'attitude indispensable."
+                    ]
+                },
+                'tres-faible': {
+                    'college': [
+                        "Résultats très faibles. Manque de travail évident. Situation qui nécessite une remédiation urgente.",
+                        "Élève en grande difficulté. Absence de travail sérieux. Soutien indispensable.",
+                        "Niveau très insuffisant. Manque total d'investissement. Situation alarmante."
+                    ],
+                    'lycee': [
+                        "Résultats très faibles ne permettant pas la validation des compétences. Efforts importants à fournir.",
+                        "Élève en très grande difficulté. Manque de travail flagrant. Situation préoccupante.",
+                        "Niveau actuel incompatible avec la poursuite dans de bonnes conditions. Travail urgent nécessaire."
+                    ]
+                },
+                'manque-travail': {
+                    'college': [
+                        "Potential non exploité par manque de travail régulier. Résultats ne reflètent pas vos capacités.",
+                        "Manque d'investissement évident qui explique les difficultés rencontrées. À travailler davantage.",
+                        "Absence de travail sérieux ayant conduit à ces résultats décevants. Changement d'attitude nécessaire."
+                    ],
+                    'lycee': [
+                        "Manque de travail compromettant la réussite. Potential présent mais non exploité.",
+                        "Investissement insuffisant ne permettant pas d'obtenir des résultats satisfaisants.",
+                        "Absence de travail régulier ayant conduit à cette situation difficile. À modifier rapidement."
+                    ]
+                },
+                'insuffisant': {
+                    'college': [
+                        "Résultats insuffisants nécessitant un travail approfondi des bases. Situation à améliorer rapidement.",
+                        "Niveau actuel ne permettant pas la validation des compétences exigées. Efforts importants à fournir.",
+                        "Difficultés majeures requérant un soutien personnalisé et un investissement conséquent."
+                    ],
+                    'lycee': [
+                        "Résultats insuffisants mettant en péril l'année scolaire. Travail urgent et approfondi nécessaire.",
+                        "Niveau incompatible avec les exigences du cycle. Remise à niveau indispensable.",
+                        "Situation critique nécessitant une remédiation immédiate et un investissement total."
+                    ]
+                }
+            };
+            
+            // Phrases supplémentaires selon les compétences
+            const competencePhrases = {
+                'participation': "Participation active et pertinente en classe.",
+                'rigueur': "Fait preuve d'une grande rigueur scientifique.",
+                'autonomie': "Autonome et responsable dans son travail.",
+                'devoirs': "Devoirs toujours soigneusement réalisés.",
+                'methodologie': "Bonne méthodologie de travail.",
+                'curiosite': "Curiosité scientifique remarquable.",
+                'resultats-baisse': "Résultats en baisse ce trimestre.",
+                'manque-rigueur': "Manque de rigueur dans les raisonnements.",
+                'irregularite': "Travail trop irrégulier.",
+                'concentration': "Problèmes de concentration en classe.",
+                'soin': "Travail toujours soigné et présentable.",
+                'investissement': "Bon investissement dans la matière.",
+                'difficultes-bases': "Rencontre des difficultés avec les bases."
+            };
+            
+            // Générer une appréciation
+            function generateAppreciation() {
+                const performance = performanceSelect.value;
+                const classLevel = classLevelSelect.value;
+                const customText = customTextArea.value.trim();
+                const selectedCompetences = Array.from(competencesCheckboxes)
+                    .filter(cb => cb.checked)
+                    .map(cb => cb.value);
+                
+                if (!performance) {
+                    appreciationDisplay.textContent = "Veuillez sélectionner un niveau de performance.";
+                    updateCharacterCount("");
+                    return;
+                }
+                
+                if (!classLevel) {
+                    appreciationDisplay.textContent = "Veuillez sélectionner un niveau de classe.";
+                    updateCharacterCount("");
+                    return;
+                }
+                
+                // Déterminer si c'est collège ou lycée
+                const levelType = (classLevel === 'sixieme' || classLevel === 'cinquieme' || 
+                                  classLevel === 'quatrieme' || classLevel === 'troisieme') ? 'college' : 'lycee';
+                
+                // Choisir une appréciation de base aléatoire
+                const baseAppreciations = appreciations[performance][levelType];
+                const randomIndex = Math.floor(Math.random() * baseAppreciations.length);
+                let appreciation = baseAppreciations[randomIndex];
+                
+                // Ajouter les phrases de compétences
+                selectedCompetences.forEach(comp => {
+                    if (competencePhrases[comp]) {
+                        appreciation += " " + competencePhrases[comp];
+                    }
+                });
+                
+                // Ajouter le texte personnalisé
+                if (customText) {
+                    appreciation += " " + customText;
+                }
+                
+                // Limiter à 255 caractères
+                if (appreciation.length > 255) {
+                    appreciation = appreciation.substring(0, 252) + "...";
+                }
+                
+                appreciationDisplay.textContent = appreciation;
+                updateCharacterCount(appreciation);
+                
+                // Ajouter à l'historique
+                addToHistory(appreciation);
+                
+                // Animation
+                appreciationDisplay.classList.add('pulse');
+                setTimeout(() => {
+                    appreciationDisplay.classList.remove('pulse');
+                }, 500);
+            }
+            
+            // Mettre à jour le compteur de caractères
+            function updateCharacterCount(text) {
+                const count = text.length;
+                const percentage = Math.min(100, (count / 255) * 100);
+                
+                characterCount.innerHTML = `<span>${count}/255 caractères</span>`;
+                progressFill.style.width = `${percentage}%`;
+                
+                // Changer la couleur de la barre de progression
+                progressFill.style.backgroundColor = getProgressColor(percentage);
+                
+                characterCount.classList.remove('warning', 'error');
+                if (count > 200) {
+                    characterCount.classList.add('warning');
+                }
+                if (count > 250) {
+                    characterCount.classList.add('error');
+                }
+            }
+            
+            // Obtenir la couleur de la barre de progression
+            function getProgressColor(percentage) {
+                if (percentage < 70) return var(--success-color);
+                if (percentage < 90) return var(--warning-color);
+                return var(--danger-color);
+            }
+            
+            // Ajouter à l'historique
+            function addToHistory(appreciation) {
+                // Garder seulement les 5 dernières
+                if (history.length >= 5) {
+                    history.pop();
+                }
+                
+                history.unshift({
+                    text: appreciation,
+                    timestamp: new Date().toLocaleTimeString()
+                });
+                
+                updateHistoryDisplay();
+            }
+            
+            // Mettre à jour l'affichage de l'historique
+            function updateHistoryDisplay() {
+                historyList.innerHTML = '';
+                
+                if (history.length === 0) {
+                    historyList.innerHTML = '<div class="history-item">Aucune appréciation générée récemment</div>';
+                    return;
+                }
+                
+                history.forEach(item => {
+                    const historyItem = document.createElement('div');
+                    historyItem.className = 'history-item';
+                    historyItem.innerHTML = `
+                        <span>${item.text.substring(0, 50)}...</span>
+                        <small>${item.timestamp}</small>
+                    `;
+                    
+                    historyItem.addEventListener('click', function() {
+                        appreciationDisplay.textContent = item.text;
+                        updateCharacterCount(item.text);
+                    });
+                    
+                    historyList.appendChild(historyItem);
+                });
+            }
+            
+            // Réinitialiser le formulaire
+            function resetForm() {
+                classLevelSelect.value = "";
+                performanceSelect.value = "";
+                competencesCheckboxes.forEach(cb => cb.checked = false);
+                customTextArea.value = "";
+                appreciationDisplay.textContent = "Votre appréciation apparaîtra ici après avoir sélectionné les options.";
+                updateCharacterCount("");
+            }
+            
+            // Copier l'appréciation dans le presse-papier
+            function copyToClipboard() {
+                const text = appreciationDisplay.textContent;
+                
+                if (text && text !== "Votre appréciation apparaîtra ici après avoir sélectionné les options.") {
+                    navigator.clipboard.writeText(text).then(() => {
+                        // Feedback visuel
+                        copyBtn.innerHTML = `
+                            <svg class="icon" viewBox="0 0 24 24" fill="white">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            Copié !
+                        `;
+                        
+                        setTimeout(() => {
+                            copyBtn.innerHTML = `
+                                <svg class="icon" viewBox="0 0 24 24" fill="white">
+                                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                </svg>
+                                Copier
+                            `;
+                        }, 2000);
+                    });
+                }
+            }
+            
+            // Appliquer un exemple
+            function applyExample(exampleText) {
+                appreciationDisplay.textContent = exampleText;
+                updateCharacterCount(exampleText);
+            }
+            
+            // Événements
+            generateBtn.addEventListener('click', generateAppreciation);
+            resetBtn.addEventListener('click', resetForm);
+            copyBtn.addEventListener('click', copyToClipboard);
+            
+            exampleItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    applyExample(this.textContent);
+                });
+            });
+            
+            // Initialisation
+            updateCharacterCount("");
+            updateHistoryDisplay();
+        });
+    </script>
+</body>
+</html>
