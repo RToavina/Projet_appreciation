@@ -81,7 +81,6 @@
             font-size: 36px;
             position: relative;
             z-index: 1;
-            font-weight: 700;
         }
         
         .subtitle {
@@ -98,234 +97,59 @@
             padding: 30px;
         }
         
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
             .main-content {
                 grid-template-columns: 1fr;
             }
         }
         
-        .input-section, .output-section {
-            background: #f8f9fa;
+        .input-section {
+            background-color: var(--light-color);
             border-radius: var(--border-radius);
             padding: 25px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
         
-        h2 {
-            color: var(--primary-color);
+        .section-title {
+            font-size: 22px;
             margin-bottom: 20px;
-            padding-bottom: 10px;
+            color: var(--primary-color);
             border-bottom: 2px solid var(--secondary-color);
-            font-size: 24px;
+            padding-bottom: 10px;
         }
         
         .form-group {
             margin-bottom: 20px;
         }
         
-        label {
+        .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
             color: var(--primary-color);
         }
         
-        select, textarea {
+        select, input[type="text"] {
             width: 100%;
             padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: var(--border-radius);
+            border: 2px solid #ddd;
+            border-radius: 8px;
             font-size: 16px;
             transition: var(--transition);
-            background-color: white;
         }
         
-        select:focus, textarea:focus {
-            outline: none;
+        select:focus, input[type="text"]:focus {
             border-color: var(--secondary-color);
+            outline: none;
             box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
         }
         
         .checkbox-section {
             max-height: 400px;
             overflow-y: auto;
-            padding: 10px;
-            background: white;
-            border-radius: var(--border-radius);
-            border: 1px solid #e0e0e0;
+            padding-right: 10px;
         }
         
-        .checkbox-group {
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .checkbox-group:last-child {
-            border-bottom: none;
-        }
-        
-        .checkbox-group h3 {
-            font-size: 18px;
-            margin-bottom: 12px;
-            color: var(--accent-color);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .checkbox-group h3::before {
-            content: "•";
-            color: var(--secondary-color);
-            font-size: 24px;
-        }
-        
-        .checkbox-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 10px;
-        }
-        
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-        
-        .checkbox-item input {
-            margin-right: 10px;
-            width: 18px;
-            height: 18px;
-            accent-color: var(--secondary-color);
-        }
-        
-        .checkbox-item label {
-            margin: 0;
-            font-weight: normal;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .checkbox-item:hover label {
-            color: var(--accent-color);
-        }
-        
-        .negative-item {
-            border-left: 3px solid var(--danger-color);
-            padding-left: 8px;
-        }
-        
-        .negative-item label {
-            color: #666;
-        }
-        
-        .buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-            flex-wrap: wrap;
-        }
-        
-        button {
-            padding: 12px 25px;
-            border: none;
-            border-radius: var(--border-radius);
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            flex: 1;
-            min-width: 140px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        
-        .generate-btn {
-            background: linear-gradient(to right, var(--success-color), #2ecc71);
-            color: white;
-        }
-        
-        .generate-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(39, 174, 96, 0.3);
-        }
-        
-        .reset-btn {
-            background: linear-gradient(to right, var(--warning-color), #f1c40f);
-            color: white;
-        }
-        
-        .reset-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(243, 156, 18, 0.3);
-        }
-        
-        .copy-btn {
-            background: linear-gradient(to right, var(--secondary-color), #5dade2);
-            color: white;
-        }
-        
-        .copy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.3);
-        }
-        
-        .appreciation-display {
-            min-height: 200px;
-            padding: 20px;
-            background: white;
-            border-radius: var(--border-radius);
-            border: 1px solid #e0e0e0;
-            margin-bottom: 20px;
-            font-size: 16px;
-            line-height: 1.5;
-            white-space: pre-wrap;
-            transition: var(--transition);
-        }
-        
-        .character-count {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 15px;
-            padding: 10px 15px;
-            background: white;
-            border-radius: var(--border-radius);
-            border: 1px solid #e0e0e0;
-        }
-        
-        .progress-bar {
-            height: 8px;
-            background: #f0f0f0;
-            border-radius: 4px;
-            overflow: hidden;
-            flex: 1;
-            margin: 0 15px;
-        }
-        
-        .progress {
-            height: 100%;
-            border-radius: 4px;
-            transition: var(--transition);
-        }
-        
-        .count-text {
-            font-weight: 600;
-            min-width: 80px;
-            text-align: right;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: var(--light-color);
-            color: var(--primary-color);
-            font-size: 14px;
-        }
-        
-        /* Scrollbar personnalisée */
         .checkbox-section::-webkit-scrollbar {
             width: 8px;
         }
@@ -340,19 +164,148 @@
             border-radius: 4px;
         }
         
-        .checkbox-section::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-color);
+        .competence-category {
+            margin-bottom: 25px;
         }
         
-        /* Animation pour la génération */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-            100% { transform: scale(1); }
+        .category-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            padding-left: 10px;
+            border-left: 4px solid var(--secondary-color);
         }
         
-        .pulse {
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        @media (max-width: 480px) {
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 8px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+        
+        .checkbox-item:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+        
+        .checkbox-item input {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        
+        .checkbox-item.negative {
+            border-left: 3px solid var(--danger-color);
+            padding-left: 12px;
+            color: #666;
+        }
+        
+        .output-section {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .appreciation-display {
+            flex: 1;
+            background-color: #f9f9f9;
+            border: 2px dashed #ccc;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 25px;
+            min-height: 350px;
+            font-size: 16px;
+            line-height: 1.7;
+            transition: var(--transition);
+            white-space: pre-wrap;
+        }
+        
+        .appreciation-display.pulse {
             animation: pulse 0.5s ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0% { background-color: #f9f9f9; }
+            50% { background-color: #e8f4fd; }
+            100% { background-color: #f9f9f9; }
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #219653;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--warning-color);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e67e22;
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+        
+        .character-count {
+            text-align: right;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--light-color);
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #ddd;
         }
     </style>
 </head>
@@ -364,438 +317,415 @@
         </header>
         
         <div class="main-content">
-            <section class="input-section">
-                <h2>Paramètres de l'appréciation</h2>
+            <div class="input-section">
+                <h2 class="section-title">Paramètres de l'appréciation</h2>
                 
                 <div class="form-group">
-                    <label for="class-level">Niveau de classe :</label>
+                    <label for="class-level">Niveau de classe</label>
                     <select id="class-level">
                         <option value="">Sélectionnez un niveau</option>
-                        <option value="6e">6ème</option>
-                        <option value="5e">5ème</option>
-                        <option value="4e">4ème</option>
-                        <option value="3e">3ème</option>
-                        <option value="2nde">Seconde</option>
-                        <option value="1ere">Première</option>
-                        <option value="term">Terminale</option>
+                        <option value="6ème">6ème</option>
+                        <option value="5ème">5ème</option>
+                        <option value="4ème">4ème</option>
+                        <option value="3ème">3ème</option>
+                        <option value="2nde">2nde</option>
+                        <option value="1ère">1ère</option>
+                        <option value="Terminale">Terminale</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
-                    <label for="performance">Niveau de performance :</label>
+                    <label for="student-name">Nom de l'élève</label>
+                    <input type="text" id="student-name" placeholder="Ex: Marie Dupont ou Jean Martin">
+                </div>
+                
+                <div class="form-group">
+                    <label for="performance">Niveau de performance</label>
                     <select id="performance">
                         <option value="">Sélectionnez un niveau</option>
                         <option value="excellent">Excellent</option>
-                        <option value="tres-bon">Très bon</option>
-                        <option value="bon">Bon</option>
-                        <option value="satisfaisant">Satisfaisant</option>
-                        <option value="insuffisant">Insuffisant</option>
-                        <option value="faible">Faible</option>
+                        <option value="good">Bon</option>
+                        <option value="average">Moyen</option>
+                        <option value="weak">Faible</option>
+                        <option value="insufficient">Insuffisant</option>
                     </select>
                 </div>
                 
-                <div class="form-group">
-                    <label>Compétences et comportements :</label>
-                    <div class="checkbox-section">
-                        <div class="checkbox-group">
-                            <h3>Attitude et comportement</h3>
-                            <div class="checkbox-container">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="attitude1" value="attitude-positive">
-                                    <label for="attitude1">Attitude positive en classe</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="attitude2" value="respect-regles">
-                                    <label for="attitude2">Respect des règles de vie</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="attitude3" value="respect-autrui">
-                                    <label for="attitude3">Respect envers autrui</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="attitude4-neg" value="attitude-negatif">
-                                    <label for="attitude4-neg">Attitude négative ou perturbatrice</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="attitude5-neg" value="non-respect-regles">
-                                    <label for="attitude5-neg">Non-respect des consignes</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="attitude6-neg" value="manque-serieux">
-                                    <label for="attitude6-neg">Manque de sérieux</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="attitude7-neg" value="impolitesse">
-                                    <label for="attitude7-neg">Comportement impoli</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="attitude8-neg" value="passivite">
-                                    <label for="attitude8-neg">Passivité excessive</label>
-                                </div>
+                <h2 class="section-title">Compétences et comportements</h2>
+                
+                <div class="checkbox-section">
+                    <div class="competence-category">
+                        <div class="category-title">Attitude et comportement</div>
+                        <div class="checkbox-grid">
+                            <!-- Points positifs -->
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="attitude-positive" value="attitude-positive">
+                                <label for="attitude-positive">Attitude positive et constructive</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="respect" value="respect">
+                                <label for="respect">Respect des règles et des personnes</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="serious" value="serious">
+                                <label for="serious">Sérieux et appliqué</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="autonomous" value="autonomous">
+                                <label for="autonomous">Autonome et responsable</label>
+                            </div>
+                            <!-- Points négatifs -->
+                            <div class="checkbox-item negative">
+                                <input type="checkbox" id="attitude-negative" value="attitude-negative">
+                                <label for="attitude-negative">Attitude parfois inadaptée</label>
+                            </div>
+                            <div class="checkbox-item negative">
+                                <input type="checkbox" id="disrespect" value="disrespect">
+                                <label for="disrespect">Manque de respect occasionnel</label>
+                            </div>
+                            <div class="checkbox-item negative">
+                                <input type="checkbox" id="disruptive" value="disruptive">
+                                <label for="disruptive">Comportement perturbateur</label>
+                            </div>
+                            <div class="checkbox-item negative">
+                                <input type="checkbox" id="irresponsible" value="irresponsible">
+                                <label for="irresponsible">Manque de responsabilité</label>
                             </div>
                         </div>
-                        
-                        <div class="checkbox-group">
-                            <h3>Travail et méthode</h3>
-                            <div class="checkbox-container">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="travail1" value="travail-regulier">
-                                    <label for="travail1">Travail régulier</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="travail2" value="organisation">
-                                    <label for="travail2">Bonne organisation</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="travail3" value="rigueur">
-                                    <label for="travail3">Rigueur dans le travail</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="travail4-neg" value="travail-irregulier">
-                                    <label for="travail4-neg">Travail irrégulier</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="travail5-neg" value="manque-rigueur">
-                                    <label for="travail5-neg">Manque de rigueur</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="travail6-neg" value="desorganisation">
-                                    <label for="travail6-neg">Désorganisation</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="travail7-neg" value="manque-soin">
-                                    <label for="travail7-neg">Manque de soin</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="travail8-neg" value="methodologie-absente">
-                                    <label for="travail8-neg">Méthodologie absente</label>
-                                </div>
+                    </div>
+                    
+                    <div class="competence-category">
+                        <div class="category-title">Travail et méthode</div>
+                        <div class="checkbox-grid">
+                            <!-- Points positifs -->
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="organized" value="organized">
+                                <label for="organized">Travail organisé et soigné</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="rigorous" value="rigorous">
+                                <label for="rigorous">Rigueur et précision</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="perseverance" value="perseverance">
+                                <label for="perseverance">Persévérance face aux difficultés</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="method" value="method">
+                                <label for="method">Bonne méthode de travail</label>
+                            </div>
+                            <!-- Points négatifs -->
+                            <div class="checkbox-item negative">
+                                <input type="checkbox" id="disorganized" value="disorganized">
+                                <label for="disorganized">Travail désorganisé</label>
+                            </div>
+                            <div class="checkbox-item negative">
+                                <input type="checkbox" id="careless" value="careless">
+                                <label for="careless">Manque de soin et de précision</label>
+                            </div>
+                            <div class="checkbox-item negative">
+                                <input type="checkbox" id="gives-up" value="gives-up">
+                                <label for="gives-up">Abandon face aux difficultés</label>
+                            </div>
+                            <div class="checkbox-item negative">
+                                <input type="checkbox" id="no-method" value="no-method">
+                                <label for="no-method">Méthode de travail à améliorer</label>
                             </div>
                         </div>
-                        
-                        <div class="checkbox-group">
-                            <h3>Participation et investissement</h3>
-                            <div class="checkbox-container">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="participation1" value="participation-active">
-                                    <label for="participation1">Participation active</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="participation2" value="curiosite-intellectuelle">
-                                    <label for="participation2">Curiosité intellectuelle</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="participation3" value="implication-cours">
-                                    <label for="participation3">Implication pendant les cours</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="participation4-neg" value="non-participation">
-                                    <label for="participation4-neg">Non-participation</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="participation5-neg" value="passivite-cours">
-                                    <label for="participation5-neg">Passivité en cours</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="participation6-neg" value="manque-investissement">
-                                    <label for="participation6-neg">Manque d'investissement</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="participation7-neg" value="distraction">
-                                    <label for="participation7-neg">Élève souvent distrait</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="participation8-neg" value="absent-intellectuel">
-                                    <label for="participation8-neg">Absent intellectuellement</label>
-                                </div>
+                    </div>
+                    
+                    <div class="competence-category">
+                        <div class="category-title">Participation et investissement</div>
+                        <div class="checkbox-grid">
+                            <!-- Points positifs -->
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="participates" value="participates">
+                                <label for="participates">Participation active</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="curious" value="curious">
+                                <label for="curious">Curiosité intellectuelle</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="involved" value="involved">
+                                <label for="involved">Investissement dans les activités</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="initiative" value="initiative">
+                                <label for="initiative">Prise d'initiative</label>
+                            </div>
+                            <!-- Points négatifs -->
+                            <div class="checkbox-item negative">
+                                <input type="checkbox" id="passive" value="passive">
+                                <label for="passive">Attitude passive en classe</label>
+                            </div>
+                            <div class="checkbox-item negative">
+                                <input type="checkbox" id="disinterested" value="disinterested">
+                                <label for="disinterested">Manque d'intérêt</label>
+                            </div>
+                            <div class="checkbox-item negative">
+                                <input type="checkbox" id="uninvolved" value="uninvolved">
+                                <label for="uninvolved">Peu investi dans les activités</label>
+                            </div>
+                            <div class="checkbox-item negative">
+                                <input type="checkbox" id="no-initiative" value="no-initiative">
+                                <label for="no-initiative">Absence de prise d'initiative</label>
                             </div>
                         </div>
-                        
-                        <div class="checkbox-group">
-                            <h3>Résultats et progression</h3>
-                            <div class="checkbox-container">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="resultats1" value="resultats-solides">
-                                    <label for="resultats1">Résultats solides</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="resultats2" value="progression-constante">
-                                    <label for="resultats2">Progression constante</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="resultats3" value="maitrise-competences">
-                                    <label for="resultats3">Maîtrise des compétences</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="resultats4-neg" value="resultats-insuffisants">
-                                    <label for="resultats4-neg">Résultats insuffisants</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="resultats5-neg" value="stagnation">
-                                    <label for="resultats5-neg">Stagnation des résultats</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="resultats6-neg" value="regression">
-                                    <label for="resultats6-neg">Regression des acquis</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="resultats7-neg" value="lacunes-importantes">
-                                    <label for="resultats7-neg">Lacunes importantes</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="resultats8-neg" value="difficultes-persistantes">
-                                    <label for="resultats8-neg">Difficultés persistantes</label>
-                                </div>
+                    </div>
+                    
+                    <div class="competence-category">
+                        <div class="category-title">Résultats et progression</div>
+                        <div class="checkbox-grid">
+                            <!-- Points positifs -->
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="progress" value="progress">
+                                <label for="progress">Bonne progression</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="consistent" value="consistent">
+                                <label for="consistent">Résultats réguliers</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="potential" value="potential">
+                                <label for="potential">Potentiel à développer</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="mastery" value="mastery">
+                                <label for="mastery">Maîtrise des compétences</label>
+                            </div>
+                            <!-- Points négatifs -->
+                            <div class="checkbox-item negative">
+                                <input type="checkbox" id="no-progress" value="no-progress">
+                                <label for="no-progress">Progression limitée</label>
+                            </div>
+                            <div class="checkbox-item negative">
+                                <input type="checkbox" id="irregular" value="irregular">
+                                <label for="irregular">Résultats irréguliers</label>
+                            </div>
+                            <div class="checkbox-item negative">
+                                <input type="checkbox" id="difficulties" value="difficulties">
+                                <label for="difficulties">Difficultés persistantes</label>
+                            </div>
+                            <div class="checkbox-item negative">
+                                <input type="checkbox" id="no-mastery" value="no-mastery">
+                                <label for="no-mastery">Maîtrise insuffisante</label>
                             </div>
                         </div>
-                        
-                        <div class="checkbox-group">
-                            <h3>Relations et communication</h3>
-                            <div class="checkbox-container">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="relations1" value="ecoute-active">
-                                    <label for="relations1">Écoute active</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="relations2" value="expression-claire">
-                                    <label for="relations2">Expression claire</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="relations3" value="travail-equipe">
-                                    <label for="relations3">Travail en équipe</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="relations4-neg" value="difficultes-relationnelles">
-                                    <label for="relations4-neg">Difficultés relationnelles</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="relations5-neg" value="non-ecoute">
-                                    <label for="relations5-neg">Difficulté à écouter</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="relations6-neg" value="expression-limitee">
-                                    <label for="relations6-neg">Expression limitée</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="relations7-neg" value="isolement">
-                                    <label for="relations7-neg">Tendance à l'isolement</label>
-                                </div>
-                                <div class="checkbox-item negative-item">
-                                    <input type="checkbox" id="relations8-neg" value="communication-conflictuelle">
-                                    <label for="relations8-neg">Communication conflictuelle</label>
-                                </div>
+                    </div>
+                    
+                    <div class="competence-category">
+                        <div class="category-title">Relations et communication</div>
+                        <div class="checkbox-grid">
+                            <!-- Points positifs -->
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="communicates-well" value="communicates-well">
+                                <label for="communicates-well">Bonne communication</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="collaborative" value="collaborative">
+                                <label for="collaborative">Esprit collaboratif</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="helpful" value="helpful">
+                                <label for="helpful">Aide ses camarades</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="listens" value="listens">
+                                <label for="listens">Écoute active</label>
+                            </div>
+                            <!-- Points négatifs -->
+                            <div class="checkbox-item negative">
+                                <input type="checkbox" id="communication-issues" value="communication-issues">
+                                <label for="communication-issues">Difficultés de communication</label>
+                            </div>
+                            <div class="checkbox-item negative">
+                                <input type="checkbox" id="individualistic" value="individualistic">
+                                <label for="individualistic">Attitude individualiste</label>
+                            </div>
+                            <div class="checkbox-item negative">
+                                <input type="checkbox" id="isolated" value="isolated">
+                                <label for="isolated">Tendance à s'isoler</label>
+                            </div>
+                            <div class="checkbox-item negative">
+                                <input type="checkbox" id="doesnt-listen" value="doesnt-listen">
+                                <label for="doesnt-listen">Écoute à améliorer</label>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="buttons">
-                    <button class="generate-btn" id="generate-btn">Générer l'appréciation</button>
-                    <button class="reset-btn" id="reset-btn">Tout réinitialiser</button>
-                </div>
-            </section>
+            </div>
             
-            <section class="output-section">
-                <h2>Appréciation générée</h2>
+            <div class="output-section">
+                <h2 class="section-title">Appréciation générée</h2>
                 
                 <div class="appreciation-display" id="appreciation-display">
                     Votre appréciation apparaîtra ici après avoir sélectionné les options.
                 </div>
                 
-                <div class="character-count">
-                    <span>Longueur :</span>
-                    <div class="progress-bar">
-                        <div class="progress" id="progress-bar" style="width: 0%; background-color: #27ae60;"></div>
-                    </div>
-                    <span class="count-text" id="character-count">0/255 caractères</span>
+                <div class="character-count" id="character-count">
+                    Longueur: 0 caractères
                 </div>
                 
-                <div class="buttons">
-                    <button class="copy-btn" id="copy-btn">Copier l'appréciation</button>
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="generate-btn">
+                        <span>Générer l'appréciation</span>
+                    </button>
+                    <button class="btn btn-secondary" id="copy-btn">
+                        <span>Copier</span>
+                    </button>
+                    <button class="btn btn-danger" id="reset-btn">
+                        <span>Réinitialiser</span>
+                    </button>
                 </div>
-            </section>
+            </div>
         </div>
         
         <footer>
-            <p>Banque d'appréciations - Outil pédagogique pour les enseignants</p>
+            <p>Outil de génération d'appréciations pour enseignants - Tous droits réservés</p>
         </footer>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const generateBtn = document.getElementById('generate-btn');
-            const resetBtn = document.getElementById('reset-btn');
             const copyBtn = document.getElementById('copy-btn');
+            const resetBtn = document.getElementById('reset-btn');
             const appreciationDisplay = document.getElementById('appreciation-display');
             const characterCount = document.getElementById('character-count');
-            const progressBar = document.getElementById('progress-bar');
             
-            // Phrases d'appréciations par niveau de performance
-            const appreciationPhrases = {
-                excellent: [
-                    "Excellent travail tout au long de la période.",
-                    "Résultats remarquables qui témoignent d'un investissement constant.",
-                    "Implication totale dans les activités proposées.",
-                    "Capacité d'analyse et de synthèse particulièrement développée."
-                ],
-                "tres-bon": [
-                    "Très bon travail avec une progression régulière.",
-                    "Investissement sérieux et résultats de qualité.",
-                    "Bonne maîtrise des compétences attendues.",
-                    "Participation active et constructive."
-                ],
-                bon: [
-                    "Bon travail dans l'ensemble avec des résultats satisfaisants.",
-                    "Progression notable au cours de la période.",
-                    "Investissement correct mais possibilité de faire encore mieux.",
-                    "Maîtrise correcte des principales compétences."
-                ],
-                satisfaisant: [
-                    "Travail satisfaisant mais nécessite plus de régularité.",
-                    "Résultats en progression mais encore des efforts à fournir.",
-                    "Investissement fluctuant qui pourrait être plus constant.",
-                    "Maîtrise partielle des compétences visées."
-                ],
-                insuffisant: [
-                    "Travail insuffisant qui ne permet pas d'atteindre les objectifs.",
-                    "Résultats en deçà des attentes pour ce niveau.",
-                    "Investissement trop irrégulier pour progresser efficacement.",
-                    "Maîtrise insuffisante des compétences de base."
-                ],
-                faible: [
-                    "Travail très insuffisant nécessitant une remise à niveau urgente.",
-                    "Résultats très faibles malgré le potentiel détecté.",
-                    "Manque d'investissement compromettant la réussite.",
-                    "Difficultés importantes dans la maîtrise des compétences."
-                ]
-            };
-            
-            // Phrases par compétences (positives et négatives)
-            const competencePhrases = {
-                // Positives
-                "attitude-positive": "L'élève adopte une attitude positive qui favorise un bon climat de travail.",
-                "respect-regles": "Le respect des règles de vie en classe est exemplaire.",
-                "respect-autrui": "Montre un grand respect envers ses camarades et les adultes.",
-                "travail-regulier": "Travail régulier tout au long de la période.",
-                "organisation": "Bonne organisation dans son travail personnel.",
-                "rigueur": "Rigueur et précision dans la réalisation des travaux.",
-                "participation-active": "Participation active et pertinente pendant les cours.",
-                "curiosite-intellectuelle": "Curiosité intellectuelle qui enrichit les débats.",
-                "implication-cours": "Implication constante dans les activités d'apprentissage.",
-                "resultats-solides": "Résultats solides et réguliers dans toutes les disciplines.",
-                "progression-constante": "Progression constante tout au long de l'année.",
-                "maitrise-competences": "Maîtrise satisfaisante des compétences attendues.",
-                "ecoute-active": "Écoute active et respectueuse des interventions.",
-                "expression-claire": "Expression claire et structurée à l'oral comme à l'écrit.",
-                "travail-equipe": "Capacité à travailler efficacement en équipe.",
+            // Phrases d'appréciation
+            const phrases = {
+                "attitude-positive": "fait preuve d'une attitude positive et constructive",
+                "respect": "respecte les règles et les personnes",
+                "serious": "est sérieux et appliqué dans son travail",
+                "autonomous": "fait preuve d'autonomie et de responsabilité",
+                "attitude-negative": "a une attitude parfois inadaptée",
+                "disrespect": "manifeste occasionnellement un manque de respect",
+                "disruptive": "a un comportement qui peut être perturbateur",
+                "irresponsible": "manque parfois de responsabilité",
                 
-                // Négatives
-                "attitude-negatif": "Attitude négative qui perturbe le bon déroulement des cours.",
-                "non-respect-regles": "Respect insuffisant des règles de vie en classe.",
-                "manque-serieux": "Manque de sérieux dans l'attitude et le comportement.",
-                "impolitesse": "Comportement parfois impoli envers ses camarades ou les adultes.",
-                "passivite": "Passivité excessive qui limite les apprentissages.",
-                "travail-irregulier": "Travail très irrégulier qui nuit à la progression.",
-                "manque-rigueur": "Manque de rigueur dans la réalisation des travaux.",
-                "desorganisation": "Désorganisation évidente dans le travail personnel.",
-                "manque-soin": "Manque de soin dans la présentation des travaux.",
-                "methodologie-absente": "Absence de méthodologie de travail efficace.",
-                "non-participation": "Participation très limitée voire absente en cours.",
-                "passivite-cours": "Passivité constante pendant les séances d'enseignement.",
-                "manque-investissement": "Investissement insuffisant dans les activités proposées.",
-                "distraction": "Élève souvent distrait et peu concentré.",
-                "absent-intellectuel": "Absent intellectuellement pendant les cours.",
-                "resultats-insuffisants": "Résultats insuffisants par rapport aux attentes.",
-                "stagnation": "Stagnation des résultats malgré les efforts demandés.",
-                "regression": "Régression préoccupante des acquis.",
-                "lacunes-importantes": "Lacunes importantes dans les connaissances de base.",
-                "difficultes-persistantes": "Difficultés persistantes non surmontées.",
-                "difficultes-relationnelles": "Difficultés relationnelles avec les pairs.",
-                "non-ecoute": "Difficulté à écouter les consignes et les interventions.",
-                "expression-limitee": "Expression orale et écrite limitée.",
-                "isolement": "Tendance à l'isolement qui limite les échanges.",
-                "communication-conflictuelle": "Communication parfois conflictuelle avec les autres."
+                "organized": "fournit un travail organisé et soigné",
+                "rigorous": "fait preuve de rigueur et de précision",
+                "perseverance": "persévère face aux difficultés",
+                "method": "a une bonne méthode de travail",
+                "disorganized": "fournit un travail souvent désorganisé",
+                "careless": "manque de soin et de précision",
+                "gives-up": "a tendance à abandonner face aux difficultés",
+                "no-method": "doit améliorer sa méthode de travail",
+                
+                "participates": "participe activement en classe",
+                "curious": "fait preuve de curiosité intellectuelle",
+                "involved": "s'investit dans les activités",
+                "initiative": "prend des initiatives",
+                "passive": "a une attitude passive en classe",
+                "disinterested": "manifeste un manque d'intérêt",
+                "uninvolved": "s'investit peu dans les activités",
+                "no-initiative": "ne prend pas d'initiatives",
+                
+                "progress": "montre une bonne progression",
+                "consistent": "obtient des résultats réguliers",
+                "potential": "a un potentiel à développer",
+                "mastery": "maîtrise les compétences attendues",
+                "no-progress": "a une progression limitée",
+                "irregular": "obtient des résultats irréguliers",
+                "difficulties": "rencontre des difficultés persistantes",
+                "no-mastery": "ne maîtrise pas suffisamment les compétences",
+                
+                "communicates-well": "communique efficacement",
+                "collaborative": "a un bon esprit collaboratif",
+                "helpful": "aide volontiers ses camarades",
+                "listens": "fait preuve d'écoute active",
+                "communication-issues": "a des difficultés de communication",
+                "individualistic": "a une attitude individualiste",
+                "isolated": "a tendance à s'isoler",
+                "doesnt-listen": "doit améliorer son écoute"
             };
             
-            // Mise à jour du compteur de caractères
+            // Phrases d'introduction selon le niveau de performance
+            const performancePhrases = {
+                "excellent": "Excellent travail cette période. ",
+                "good": "Bon travail cette période. ",
+                "average": "Travail satisfaisant cette période. ",
+                "weak": "Travail fragile cette période. ",
+                "insufficient": "Travail insuffisant cette période. "
+            };
+            
+            // Fonction pour mettre à jour le compteur de caractères
             function updateCharacterCount(text) {
                 const count = text.length;
-                characterCount.textContent = `${count}/255 caractères`;
+                characterCount.textContent = `Longueur: ${count} caractères`;
                 
-                // Mise à jour de la barre de progression
-                let percentage = (count / 255) * 100;
-                let color = '#27ae60'; // Vert
-                
-                if (percentage > 80) color = '#f39c12'; // Orange
-                if (percentage > 95) color = '#e74c3c'; // Rouge
-                
-                progressBar.style.width = `${Math.min(percentage, 100)}%`;
-                progressBar.style.backgroundColor = color;
+                // Changer la couleur selon la longueur
+                if (count < 100) {
+                    characterCount.style.color = '#e74c3c'; // danger-color
+                } else if (count < 200) {
+                    characterCount.style.color = '#f39c12'; // warning-color
+                } else {
+                    characterCount.style.color = '#27ae60'; // success-color
+                }
             }
             
             // Génération de l'appréciation
             generateBtn.addEventListener('click', function() {
                 const classLevel = document.getElementById('class-level').value;
+                const studentName = document.getElementById('student-name').value;
                 const performance = document.getElementById('performance').value;
-                const checkedCompetences = Array.from(document.querySelectorAll('.checkbox-section input:checked'))
-                    .map(checkbox => checkbox.value);
                 
+                // Vérification des champs obligatoires
                 if (!classLevel || !performance) {
-                    alert('Veuillez sélectionner le niveau de classe et le niveau de performance.');
+                    alert('Veuillez sélectionner le niveau et la performance de l\'élève.');
                     return;
                 }
                 
-                // Phrases de base selon le niveau de performance
-                let appreciation = appreciationPhrases[performance][Math.floor(Math.random() * appreciationPhrases[performance].length)] + " ";
+                // Récupération des cases cochées
+                const checkedBoxes = document.querySelectorAll('.checkbox-section input:checked');
+                if (checkedBoxes.length === 0) {
+                    alert('Veuillez sélectionner au moins une compétence ou comportement.');
+                    return;
+                }
                 
-                // Ajout des phrases de compétences
-                checkedCompetences.forEach(competence => {
-                    appreciation += competencePhrases[competence] + " ";
+                // Construction de l'appréciation
+                let appreciation = '';
+                
+                // Ajout du nom si spécifié
+                if (studentName) {
+                    appreciation += `${studentName} : `;
+                }
+                
+                // Phrase d'introduction selon la performance
+                appreciation += performancePhrases[performance] || '';
+                
+                // Ajout des phrases sélectionnées
+                const selectedPhrases = [];
+                checkedBoxes.forEach(box => {
+                    if (phrases[box.value]) {
+                        selectedPhrases.push(phrases[box.value]);
+                    }
                 });
                 
-                // Adaptation au niveau de classe
-                let levelAdaptation = "";
-                switch(classLevel) {
-                    case '6e':
-                        levelAdaptation = "Bonne adaptation au collège. ";
-                        break;
-                    case '5e':
-                        levelAdaptation = "Bonne intégration dans le cycle 4. ";
-                        break;
-                    case '4e':
-                        levelAdaptation = "Niveau satisfaisant en vue du brevet. ";
-                        break;
-                    case '3e':
-                        levelAdaptation = "Préparation sérieuse aux épreuves du brevet. ";
-                        break;
-                    case '2nde':
-                        levelAdaptation = "Bonne adaptation au lycée. ";
-                        break;
-                    case '1ere':
-                        levelAdaptation = "Préparation active aux épreuves anticipées. ";
-                        break;
-                    case 'term':
-                        levelAdaptation = "Préparation sérieuse au baccalauréat. ";
-                        break;
-                }
+                // Construction des phrases
+                selectedPhrases.forEach((phrase, index) => {
+                    if (studentName) {
+                        // Si nom spécifié, utiliser "il/elle" ou "l'élève"
+                        if (index === 0) {
+                            appreciation += `L'élève ${phrase}. `;
+                        } else {
+                            appreciation += `Il ${phrase}. `;
+                        }
+                    } else {
+                        // Si pas de nom, utiliser "L'élève"
+                        appreciation += `L'élève ${phrase}. `;
+                    }
+                });
                 
-                appreciation += levelAdaptation;
-                
-                // Conseils selon le niveau de performance
-                let advice = "";
-                if (performance === 'excellent' || performance === 'tres-bon') {
-                    advice = "Continuez sur cette excellente voie pour la suite de votre scolarité.";
-                } else if (performance === 'bon' || performance === 'satisfaisant') {
-                    advice = "Avec un peu plus de régularité, vous pourriez obtenir de meilleurs résultats.";
+                // Phrase de conclusion
+                if (performance === 'excellent' || performance === 'good') {
+                    appreciation += `Continue ainsi pour la suite.`;
+                } else if (performance === 'average') {
+                    appreciation += `Avec davantage d'efforts, il peut progresser.`;
                 } else {
-                    advice = "Il est nécessaire de fournir plus d'efforts pour progresser significativement.";
-                }
-                
-                appreciation += advice;
-                
-                // Limitation à 255 caractères
-                if (appreciation.length > 255) {
-                    appreciation = appreciation.substring(0, 252) + '...';
+                    appreciation += `Il est important qu'il s'investisse davantage.`;
                 }
                 
                 // Mettre à jour l'affichage avec animation
@@ -811,6 +741,7 @@
             // Réinitialisation
             resetBtn.addEventListener('click', function() {
                 document.getElementById('class-level').value = '';
+                document.getElementById('student-name').value = '';
                 document.getElementById('performance').value = '';
                 document.querySelectorAll('.checkbox-section input').forEach(checkbox => {
                     checkbox.checked = false;
