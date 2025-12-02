@@ -725,13 +725,13 @@
                 "insufficient": "Travail insuffisant cette période. {name} rencontre des difficultés."
             };
             
-            // Phrases de conclusion selon le niveau de performance
+            // Phrases de conclusion selon le niveau de performance (sans répétition du nom)
             const conclusionPhrases = {
-                "excellent": "Je félicite {name} pour {poss} excellent travail et l'encourage à poursuivre dans cette voie.",
-                "good": "Je félicite {name} et l'encourage à poursuivre {poss} efforts.",
-                "average": "Avec davantage d'efforts, {name} peut progresser davantage.",
-                "weak": "{name} doit s'investir davantage pour améliorer {poss} résultats.",
-                "insufficient": "Il est important que {name} s'investisse davantage pour combler {poss} lacunes."
+                "excellent": "Je {subj} félicite pour {poss} excellent travail et l'encourage à poursuivre dans cette voie.",
+                "good": "Je {subj} félicite et l'encourage à poursuivre {poss} efforts.",
+                "average": "Avec davantage d'efforts, {subj} peut progresser davantage.",
+                "weak": "{subj} doit s'investir davantage pour améliorer {poss} résultats.",
+                "insufficient": "Il est important que {subj} s'investisse davantage pour combler {poss} lacunes."
             };
             
             // Fonction pour mettre à jour le compteur de caractères
@@ -755,7 +755,7 @@
                     .replace(/{name}/g, name || "L'élève")
                     .replace(/{adj}/g, terms.adjective)
                     .replace(/{poss}/g, terms.possessive)
-                    .replace(/{subj}/g, terms.subject)
+                    .replace(/{subj}/g, name || "l'élève")
                     .replace(/{obj}/g, terms.object)
                     .replace(/{article}/g, terms.article)
                     .replace(/{pastParticiple}/g, terms.pastParticiple);
@@ -801,15 +801,21 @@
                 
                 // Construction des phrases avec adaptation du nom et du genre
                 if (selectedPhrases.length > 0) {
-                    appreciation += (studentName ? studentName : "L'élève") + " ";
-                    appreciation += adaptPhrase(selectedPhrases[0], studentName, terms);
+                    // Si nous avons un nom d'élève, nous l'utilisons pour la première phrase
+                    if (studentName) {
+                        appreciation += studentName + " ";
+                        appreciation += adaptPhrase(selectedPhrases[0], studentName, terms);
+                    } else {
+                        appreciation += "L'élève ";
+                        appreciation += adaptPhrase(selectedPhrases[0], studentName, terms);
+                    }
                     
                     if (selectedPhrases.length > 1) {
                         for (let i = 1; i < selectedPhrases.length; i++) {
                             if (i === selectedPhrases.length - 1) {
-                                appreciation += ". Enfin, " + (studentName ? terms.subject : "il") + " ";
+                                appreciation += ". Enfin, " + terms.subject + " ";
                             } else {
-                                appreciation += ". De plus, " + (studentName ? terms.subject : "il") + " ";
+                                appreciation += ". De plus, " + terms.subject + " ";
                             }
                             appreciation += adaptPhrase(selectedPhrases[i], studentName, terms);
                         }
@@ -817,7 +823,7 @@
                     appreciation += ". ";
                 }
                 
-                // Phrase de conclusion
+                // Phrase de conclusion (sans répétition du nom)
                 const conclusionPhrase = adaptPhrase(conclusionPhrases[performance], studentName, terms);
                 appreciation += conclusionPhrase;
                 
@@ -863,4 +869,3 @@
     </script>
 </body>
 </html>
-
