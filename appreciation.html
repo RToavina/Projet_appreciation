@@ -140,7 +140,7 @@
         }
         
         .checkbox-group {
-            max-height: 220px;
+            max-height: 300px;
             overflow-y: auto;
             padding: 12px;
             display: grid;
@@ -379,6 +379,16 @@
             width: 18px;
             height: 18px;
         }
+        
+        .section-title {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -428,6 +438,7 @@
                 <div class="form-group">
                     <label>Compétences et comportements :</label>
                     <div class="checkbox-group" id="competences">
+                        <div class="section-title">Points positifs</div>
                         <div class="checkbox-item">
                             <input type="checkbox" id="participation" value="participation">
                             <label for="participation">Participation active</label>
@@ -453,6 +464,44 @@
                             <label for="curiosite">Curiosité scientifique</label>
                         </div>
                         <div class="checkbox-item">
+                            <input type="checkbox" id="soin" value="soin">
+                            <label for="soin">Travail soigné</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="investissement" value="investissement">
+                            <label for="investissement">Bon investissement</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="perseverance" value="perseverance">
+                            <label for="perseverance">Persévérance</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="creativite" value="creativite">
+                            <label for="creativite">Créativité</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="esprit-critique" value="esprit-critique">
+                            <label for="esprit-critique">Esprit critique</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="capacite-analyse" value="capacite-analyse">
+                            <label for="capacite-analyse">Bonne capacité d'analyse</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="progress" value="progress">
+                            <label for="progress">Progression notable</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="efforts" value="efforts">
+                            <label for="efforts">Efforts constants</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="initiative" value="initiative">
+                            <label for="initiative">Prend des initiatives</label>
+                        </div>
+                        
+                        <div class="section-title">Points à améliorer</div>
+                        <div class="checkbox-item">
                             <input type="checkbox" id="resultats-baisse" value="resultats-baisse">
                             <label for="resultats-baisse">Résultats en baisse</label>
                         </div>
@@ -469,16 +518,48 @@
                             <label for="concentration">Problèmes de concentration</label>
                         </div>
                         <div class="checkbox-item">
-                            <input type="checkbox" id="soin" value="soin">
-                            <label for="soin">Travail soigné</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="investissement" value="investissement">
-                            <label for="investissement">Bon investissement</label>
-                        </div>
-                        <div class="checkbox-item">
                             <input type="checkbox" id="difficultes-bases" value="difficultes-bases">
                             <label for="difficultes-bases">Difficultés avec les bases</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="retard" value="retard">
+                            <label for="retard">Retard dans le travail</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="manque-autonomie" value="manque-autonomie">
+                            <label for="manque-autonomie">Manque d'autonomie</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="passivite" value="passivite">
+                            <label for="passivite">Passivité en classe</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="manque-soin" value="manque-soin">
+                            <label for="manque-soin">Manque de soin</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="manque-investissement" value="manque-investissement">
+                            <label for="manque-investissement">Manque d'investissement</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="difficulte-comprehension" value="difficulte-comprehension">
+                            <label for="difficulte-comprehension">Difficulté de compréhension</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="manque-perseverance" value="manque-perseverance">
+                            <label for="manque-perseverance">Manque de persévérance</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="manque-methodologie" value="manque-methodologie">
+                            <label for="manque-methodologie">Manque de méthodologie</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="absenteisme" value="absenteisme">
+                            <label for="absenteisme">Absentéisme</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="distraction" value="distraction">
+                            <label for="distraction">Se laisse distraire</label>
                         </div>
                     </div>
                 </div>
@@ -693,19 +774,39 @@
             
             // Phrases supplémentaires selon les compétences
             const competencePhrases = {
+                // Points positifs
                 'participation': "Participation active et pertinente en classe.",
                 'rigueur': "Fait preuve d'une grande rigueur scientifique.",
                 'autonomie': "Autonome et responsable dans son travail.",
                 'devoirs': "Devoirs toujours soigneusement réalisés.",
                 'methodologie': "Bonne méthodologie de travail.",
                 'curiosite': "Curiosité scientifique remarquable.",
+                'soin': "Travail toujours soigné et présentable.",
+                'investissement': "Bon investissement dans la matière.",
+                'perseverance': "Persévérance face aux difficultés.",
+                'creativite': "Fait preuve de créativité dans ses approches.",
+                'esprit-critique': "Esprit critique bien développé.",
+                'capacite-analyse': "Bonne capacité d'analyse et de synthèse.",
+                'progress': "Progression notable depuis le début de l'année.",
+                'efforts': "Efforts constants et méritoires.",
+                'initiative': "Prend des initiatives pertinentes.",
+                
+                // Points à améliorer
                 'resultats-baisse': "Résultats en baisse ce trimestre.",
                 'manque-rigueur': "Manque de rigueur dans les raisonnements.",
                 'irregularite': "Travail trop irrégulier.",
                 'concentration': "Problèmes de concentration en classe.",
-                'soin': "Travail toujours soigné et présentable.",
-                'investissement': "Bon investissement dans la matière.",
-                'difficultes-bases': "Rencontre des difficultés avec les bases."
+                'difficultes-bases': "Rencontre des difficultés avec les bases.",
+                'retard': "Retard dans la réalisation des travaux.",
+                'manque-autonomie': "Manque d'autonomie dans le travail.",
+                'passivite': "Passivité en classe.",
+                'manque-soin': "Manque de soin dans les productions.",
+                'manque-investissement': "Investissement insuffisant.",
+                'difficulte-comprehension': "Difficulté à comprendre les consignes.",
+                'manque-perseverance': "Abandonne face aux difficultés.",
+                'manque-methodologie': "Méthode de travail à améliorer.",
+                'absenteisme': "Absentéisme préjudiciable.",
+                'distraction': "Se laisse facilement distraire."
             };
             
             // Générer une appréciation
@@ -777,7 +878,13 @@
                 progressFill.style.width = `${percentage}%`;
                 
                 // Changer la couleur de la barre de progression
-                progressFill.style.backgroundColor = getProgressColor(percentage);
+                if (percentage < 70) {
+                    progressFill.style.backgroundColor = '#27ae60'; // vert
+                } else if (percentage < 90) {
+                    progressFill.style.backgroundColor = '#f39c12'; // orange
+                } else {
+                    progressFill.style.backgroundColor = '#e74c3c'; // rouge
+                }
                 
                 characterCount.classList.remove('warning', 'error');
                 if (count > 200) {
@@ -786,13 +893,6 @@
                 if (count > 250) {
                     characterCount.classList.add('error');
                 }
-            }
-            
-            // Obtenir la couleur de la barre de progression
-            function getProgressColor(percentage) {
-                if (percentage < 70) return var(--success-color);
-                if (percentage < 90) return var(--warning-color);
-                return var(--danger-color);
             }
             
             // Ajouter à l'historique
