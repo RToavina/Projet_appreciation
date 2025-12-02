@@ -655,72 +655,83 @@
                     possessive: "son",
                     object: "le",
                     adjective: "sérieux et appliqué",
-                    pastParticiple: "investi"
+                    pastParticiple: "investi",
+                    article: "un"
                 },
                 female: {
                     subject: "elle",
                     possessive: "sa",
                     object: "la",
                     adjective: "sérieuse et appliquée",
-                    pastParticiple: "investie"
+                    pastParticiple: "investie",
+                    article: "une"
                 }
             };
             
-            // Phrases d'appréciation avec placeholders
+            // Phrases d'appréciation avec placeholders pour nom et genre
             const phrases = {
-                "attitude-positive": "fait preuve d'une attitude positive et constructive",
-                "respect": "respecte les règles et les personnes",
-                "serious": "est {adj} dans son travail",
-                "autonomous": "fait preuve d'autonomie et de responsabilité",
-                "attitude-negative": "a une attitude parfois inadaptée",
-                "disrespect": "manifeste occasionnellement un manque de respect",
-                "disruptive": "a un comportement qui peut être perturbateur",
-                "irresponsible": "manque parfois de responsabilité",
+                "attitude-positive": "{name} fait preuve d'une attitude positive et constructive",
+                "respect": "{name} respecte les règles et les personnes",
+                "serious": "{name} est {adj} dans {poss} travail",
+                "autonomous": "{name} fait preuve d'autonomie et de responsabilité",
+                "attitude-negative": "{name} a une attitude parfois inadaptée",
+                "disrespect": "{name} manifeste occasionnellement un manque de respect",
+                "disruptive": "{name} a un comportement qui peut être perturbateur",
+                "irresponsible": "{name} manque parfois de responsabilité",
                 
-                "organized": "fournit un travail organisé et soigné",
-                "rigorous": "fait preuve de rigueur et de précision",
-                "perseverance": "persévère face aux difficultés",
-                "method": "a une bonne méthode de travail",
-                "disorganized": "fournit un travail souvent désorganisé",
-                "careless": "manque de soin et de précision",
-                "gives-up": "a tendance à abandonner face aux difficultés",
-                "no-method": "doit améliorer sa méthode de travail",
+                "organized": "{name} fournit un travail organisé et soigné",
+                "rigorous": "{name} fait preuve de rigueur et de précision",
+                "perseverance": "{name} persévère face aux difficultés",
+                "method": "{name} a une bonne méthode de travail",
+                "disorganized": "{name} fournit un travail souvent désorganisé",
+                "careless": "{name} manque de soin et de précision",
+                "gives-up": "{name} a tendance à abandonner face aux difficultés",
+                "no-method": "{name} doit améliorer {poss} méthode de travail",
                 
-                "participates": "participe activement en classe",
-                "curious": "fait preuve de curiosité intellectuelle",
-                "involved": "s'investit dans les activités",
-                "initiative": "prend des initiatives",
-                "passive": "a une attitude passive en classe",
-                "disinterested": "manifeste un manque d'intérêt",
-                "uninvolved": "s'investit peu dans les activités",
-                "no-initiative": "ne prend pas d'initiatives",
+                "participates": "{name} participe activement en classe",
+                "curious": "{name} fait preuve de curiosité intellectuelle",
+                "involved": "{name} s'investit dans les activités",
+                "initiative": "{name} prend des initiatives",
+                "passive": "{name} a une attitude passive en classe",
+                "disinterested": "{name} manifeste un manque d'intérêt",
+                "uninvolved": "{name} s'investit peu dans les activités",
+                "no-initiative": "{name} ne prend pas d'initiatives",
                 
-                "progress": "montre une bonne progression",
-                "consistent": "obtient des résultats réguliers",
-                "potential": "a un potentiel à développer",
-                "mastery": "maîtrise les compétences attendues",
-                "no-progress": "a une progression limitée",
-                "irregular": "obtient des résultats irréguliers",
-                "difficulties": "rencontre des difficultés persistantes",
-                "no-mastery": "ne maîtrise pas suffisamment les compétences",
+                "progress": "{name} montre une bonne progression",
+                "consistent": "{name} obtient des résultats réguliers",
+                "potential": "{name} a un potentiel à développer",
+                "mastery": "{name} maîtrise les compétences attendues",
+                "no-progress": "{name} a une progression limitée",
+                "irregular": "{name} obtient des résultats irréguliers",
+                "difficulties": "{name} rencontre des difficultés persistantes",
+                "no-mastery": "{name} ne maîtrise pas suffisamment les compétences",
                 
-                "communicates-well": "communique efficacement",
-                "collaborative": "a un bon esprit collaboratif",
-                "helpful": "aide volontiers ses camarades",
-                "listens": "fait preuve d'écoute active",
-                "communication-issues": "a des difficultés de communication",
-                "individualistic": "a une attitude individualiste",
-                "isolated": "a tendance à s'isoler",
-                "doesnt-listen": "doit améliorer son écoute"
+                "communicates-well": "{name} communique efficacement",
+                "collaborative": "{name} a un bon esprit collaboratif",
+                "helpful": "{name} aide volontiers {poss} camarades",
+                "listens": "{name} fait preuve d'écoute active",
+                "communication-issues": "{name} a des difficultés de communication",
+                "individualistic": "{name} a une attitude individualiste",
+                "isolated": "{name} a tendance à s'isoler",
+                "doesnt-listen": "{name} doit améliorer {poss} écoute"
             };
             
             // Phrases d'introduction selon le niveau de performance
             const performancePhrases = {
-                "excellent": "Excellent travail cette période. ",
-                "good": "Bon travail cette période. ",
-                "average": "Travail satisfaisant cette période. ",
-                "weak": "Travail fragile cette période. ",
-                "insufficient": "Travail insuffisant cette période. "
+                "excellent": "Excellent travail cette période. {name} a montré {article} réel engagement. ",
+                "good": "Bon travail cette période. {name} s'est {pastParticiple} régulièrement. ",
+                "average": "Travail satisfaisant cette période. {name} a fourni des efforts. ",
+                "weak": "Travail fragile cette période. {name} doit s'investir davantage. ",
+                "insufficient": "Travail insuffisant cette période. {name} rencontre des difficultés. "
+            };
+            
+            // Phrases de conclusion selon le niveau de performance
+            const conclusionPhrases = {
+                "excellent": "Je félicite {name} pour {poss} excellent travail et l'encourage à poursuivre dans cette voie.",
+                "good": "Je félicite {name} et l'encourage à poursuivre {poss} efforts.",
+                "average": "Avec davantage d'efforts, {name} peut progresser davantage.",
+                "weak": "{name} doit s'investir davantage pour améliorer {poss} résultats.",
+                "insufficient": "Il est important que {name} s'investisse davantage pour combler {poss} lacunes."
             };
             
             // Fonction pour mettre à jour le compteur de caractères
@@ -736,6 +747,18 @@
                 } else {
                     characterCount.style.color = '#27ae60'; // success-color
                 }
+            }
+            
+            // Fonction pour adapter une phrase avec nom et genre
+            function adaptPhrase(phrase, name, terms) {
+                return phrase
+                    .replace(/{name}/g, name || "L'élève")
+                    .replace(/{adj}/g, terms.adjective)
+                    .replace(/{poss}/g, terms.possessive)
+                    .replace(/{subj}/g, terms.subject)
+                    .replace(/{obj}/g, terms.object)
+                    .replace(/{article}/g, terms.article)
+                    .replace(/{pastParticiple}/g, terms.pastParticiple);
             }
             
             // Génération de l'appréciation
@@ -758,16 +781,15 @@
                     return;
                 }
                 
+                // Récupération des termes selon le genre
+                const terms = genderTerms[gender.value];
+                
                 // Construction de l'appréciation
                 let appreciation = '';
                 
-                // Ajout du nom si spécifié
-                if (studentName) {
-                    appreciation += `${studentName} : `;
-                }
-                
                 // Phrase d'introduction selon la performance
-                appreciation += performancePhrases[performance] || '';
+                const introPhrase = adaptPhrase(performancePhrases[performance], studentName, terms);
+                appreciation += introPhrase;
                 
                 // Ajout des phrases sélectionnées
                 const selectedPhrases = [];
@@ -777,38 +799,22 @@
                     }
                 });
                 
-                // Récupération des termes selon le genre
-                const terms = genderTerms[gender.value];
-                
-                // Construction des phrases avec adaptation du genre
+                // Construction des phrases avec adaptation du nom et du genre
                 selectedPhrases.forEach((phrase, index) => {
-                    let adaptedPhrase = phrase
-                        .replace('{adj}', terms.adjective)
-                        .replace('{poss}', terms.possessive)
-                        .replace('{subj}', terms.subject)
-                        .replace('{obj}', terms.object);
+                    const adaptedPhrase = adaptPhrase(phrase, studentName, terms);
                     
-                    if (studentName) {
-                        // Si nom spécifié, utiliser "il/elle"
-                        if (index === 0) {
-                            appreciation += `${terms.subject} ${adaptedPhrase}. `;
-                        } else {
-                            appreciation += `${terms.subject} ${adaptedPhrase}. `;
-                        }
+                    if (index === 0) {
+                        appreciation += `${adaptedPhrase}. `;
+                    } else if (index === selectedPhrases.length - 1) {
+                        appreciation += `Enfin, ${adaptedPhrase.toLowerCase()}. `;
                     } else {
-                        // Si pas de nom, utiliser "L'élève"
-                        appreciation += `L'élève ${adaptedPhrase}. `;
+                        appreciation += `De plus, ${adaptedPhrase.toLowerCase()}. `;
                     }
                 });
                 
                 // Phrase de conclusion
-                if (performance === 'excellent' || performance === 'good') {
-                    appreciation += `Continue ainsi pour la suite.`;
-                } else if (performance === 'average') {
-                    appreciation += `Avec davantage d'efforts, ${terms.subject} peut progresser.`;
-                } else {
-                    appreciation += `Il est important que ${terms.subject} s'investisse davantage.`;
-                }
+                const conclusionPhrase = adaptPhrase(conclusionPhrases[performance], studentName, terms);
+                appreciation += conclusionPhrase;
                 
                 // Mettre à jour l'affichage avec animation
                 appreciationDisplay.textContent = appreciation;
