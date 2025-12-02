@@ -543,7 +543,7 @@
                         </div>
                         <div class="checkbox-item">
                             <input type="checkbox" id="difficulte-comprehension" value="difficulte-comprehension">
-                            <label for="difficulte-comprehension">Difficulté de compréhension</label>
+                            <label for="difficulte-comprehension">Difficulté à comprendre</label>
                         </div>
                         <div class="checkbox-item">
                             <input type="checkbox" id="manque-perseverance" value="manque-perseverance">
@@ -551,7 +551,7 @@
                         </div>
                         <div class="checkbox-item">
                             <input type="checkbox" id="manque-methodologie" value="manque-methodologie">
-                            <label for="manque-methodologie">Manque de méthodologie</label>
+                            <label for="manque-methodologie">Méthode à améliorer</label>
                         </div>
                         <div class="checkbox-item">
                             <input type="checkbox" id="absenteisme" value="absenteisme">
@@ -565,16 +565,16 @@
                 </div>
                 
                 <div class="form-group custom-text-group">
-                    <label for="custom-text">Texte personnalisé (optionnel) :</label>
-                    <textarea id="custom-text" class="textarea-group" placeholder="Ajoutez votre propre texte ici..."></textarea>
+                    <label for="custom-text">Texte personnalisé :</label>
+                    <textarea id="custom-text" class="textarea-group" placeholder="Ajoutez votre texte personnalisé ici..."></textarea>
                 </div>
                 
                 <div class="buttons">
                     <button id="generate-btn" class="btn-primary">
                         <svg class="icon" viewBox="0 0 24 24" fill="white">
-                            <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                         </svg>
-                        Générer l'appréciation
+                        Générer
                     </button>
                     <button id="reset-btn" class="btn-secondary">
                         <svg class="icon" viewBox="0 0 24 24" fill="white">
@@ -589,38 +589,32 @@
                         Copier
                     </button>
                 </div>
-            </section>
-            
-            <section class="result">
-                <h2>Appréciation générée</h2>
-                <div class="character-count" id="character-count">
-                    <span>0/255 caractères</span>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progress-fill"></div>
-                    </div>
-                </div>
-                <div class="appreciation-display" id="appreciation-display">
-                    Votre appréciation apparaîtra ici après avoir sélectionné les options.
-                </div>
                 
                 <div class="examples">
                     <h3>
                         <svg class="icon" viewBox="0 0 24 24" fill="#2c3e50">
                             <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
                         </svg>
-                        Exemples d'appréciations par niveau
+                        Exemples d'appréciations
                     </h3>
-                    <div class="example-item" data-example="college">
-                        <strong>6ème-5ème :</strong> Élève sérieux(se) qui participe activement. Continue à fournir des efforts réguliers.
+                    <div class="example-item">Élève sérieux(se) et appliqué(e) qui fournit un travail régulier. Résultats satisfaisants.</div>
+                    <div class="example-item">Bon potentiel mais manque de régularité dans le travail. Résultats en deçà des attentes.</div>
+                    <div class="example-item">Participation active en cours. Bonne compréhension des concepts abordés. Continue ainsi !</div>
+                </div>
+            </section>
+            
+            <section class="result">
+                <div class="form-group">
+                    <label>Appréciation générée :</label>
+                    <div id="appreciation-display" class="appreciation-display">
+                        Votre appréciation apparaîtra ici après avoir sélectionné les options.
                     </div>
-                    <div class="example-item" data-example="college-moyen">
-                        <strong>4ème-3ème :</strong> Résultats satisfaisants mais doit gagner en autonomie pour aborder le lycée.
-                    </div>
-                    <div class="example-item" data-example="lycee">
-                        <strong>Seconde-Première :</strong> Bon potentiel, méthodologie à consolider pour les épreuves du bac.
-                    </div>
-                    <div class="example-item" data-example="terminale">
-                        <strong>Terminale :</strong> Travail régulier et investi, préparation sérieuse pour les épreuves finales.
+                    
+                    <div class="character-count" id="character-count">
+                        <span>0/255 caractères</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
                     </div>
                 </div>
                 
@@ -629,22 +623,23 @@
                         <svg class="icon" viewBox="0 0 24 24" fill="#2c3e50">
                             <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
                         </svg>
-                        Historique des appréciations (5 dernières)
+                        Historique (5 dernières)
                     </h3>
                     <div class="history-list" id="history-list">
-                        <!-- L'historique sera généré ici -->
+                        <div class="history-item">Aucune appréciation générée récemment</div>
                     </div>
                 </div>
             </section>
         </div>
         
         <footer>
-            <p>Banque d'appréciations pour bulletins scolaires - Outil pédagogique pour enseignants</p>
+            <p>Banque d'appréciations pour bulletins scolaires - Tous droits réservés © 2023</p>
         </footer>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Éléments DOM
             const classLevelSelect = document.getElementById('class-level');
             const performanceSelect = document.getElementById('performance');
             const competencesCheckboxes = document.querySelectorAll('#competences input[type="checkbox"]');
@@ -809,6 +804,72 @@
                 'distraction': "Se laisse facilement distraire."
             };
             
+            // Fonction pour tronquer intelligemment une phrase
+            function truncateIntelligently(text, maxLength) {
+                if (text.length <= maxLength) return text;
+                
+                // Chercher le dernier point avant la limite
+                let lastPeriodIndex = text.lastIndexOf('.', maxLength);
+                // Si on trouve un point, tronquer là
+                if (lastPeriodIndex !== -1 && lastPeriodIndex > maxLength * 0.7) {
+                    return text.substring(0, lastPeriodIndex + 1);
+                }
+                
+                // Chercher la dernière virgule avant la limite
+                let lastCommaIndex = text.lastIndexOf(',', maxLength);
+                if (lastCommaIndex !== -1 && lastCommaIndex > maxLength * 0.7) {
+                    return text.substring(0, lastCommaIndex);
+                }
+                
+                // Chercher le dernier espace avant la limite
+                let lastSpaceIndex = text.lastIndexOf(' ', maxLength);
+                if (lastSpaceIndex !== -1 && lastSpaceIndex > maxLength * 0.7) {
+                    return text.substring(0, lastSpaceIndex) + "...";
+                }
+                
+                // Si rien ne fonctionne, tronquer simplement
+                return text.substring(0, maxLength - 3) + "...";
+            }
+            
+            // Fonction pour optimiser la longueur du texte
+            function optimizeTextLength(text, maxLength) {
+                if (text.length <= maxLength) return text;
+                
+                // Liste des phrases à raccourcir si nécessaire
+                const shortVersions = {
+                    "Participation active et pertinente en classe.": "Participation active.",
+                    "Fait preuve d'une grande rigueur scientifique.": "Rigueur scientifique.",
+                    "Autonome et responsable dans son travail.": "Autonome dans son travail.",
+                    "Devoirs toujours soigneusement réalisés.": "Devoirs bien réalisés.",
+                    "Bonne méthodologie de travail.": "Méthodologie correcte.",
+                    "Curiosité scientifique remarquable.": "Curiosité scientifique.",
+                    "Travail toujours soigné et présentable.": "Travail soigné.",
+                    "Bon investissement dans la matière.": "Investissement correct.",
+                    "Persévérance face aux difficultés.": "Persévérance.",
+                    "Fait preuve de créativité dans ses approches.": "Créativité.",
+                    "Esprit critique bien développé.": "Esprit critique.",
+                    "Bonne capacité d'analyse et de synthèse.": "Bonne capacité d'analyse.",
+                    "Progression notable depuis le début de l'année.": "Progression notable.",
+                    "Efforts constants et méritoires.": "Efforts constants.",
+                    "Prend des initiatives pertinentes.": "Initiatives pertinentes."
+                };
+                
+                // Remplacer les phrases longues par leurs versions courtes
+                let optimizedText = text;
+                for (const [long, short] of Object.entries(shortVersions)) {
+                    if (optimizedText.includes(long) && optimizedText.length > maxLength) {
+                        optimizedText = optimizedText.replace(long, short);
+                    }
+                }
+                
+                // Si c'est toujours trop long, tronquer intelligemment
+                if (optimizedText.length > maxLength) {
+                    optimizedText = truncateIntelligently(optimizedText, maxLength);
+                }
+                
+                return optimizedText;
+            }
+            
             // Générer une appréciation
             function generateAppreciation() {
                 const performance = performanceSelect.value;
@@ -851,10 +912,8 @@
                     appreciation += " " + customText;
                 }
                 
-                // Limiter à 255 caractères
-                if (appreciation.length > 255) {
-                    appreciation = appreciation.substring(0, 252) + "...";
-                }
+                // Optimiser la longueur du texte
+                appreciation = optimizeTextLength(appreciation, 255);
                 
                 appreciationDisplay.textContent = appreciation;
                 updateCharacterCount(appreciation);
