@@ -265,6 +265,16 @@
             transform: translateY(-2px);
         }
         
+        .btn-warning {
+            background-color: var(--warning-color);
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background-color: #e67e22;
+            transform: translateY(-2px);
+        }
+        
         .examples {
             margin-top: 30px;
             background-color: var(--light-color);
@@ -389,13 +399,84 @@
             font-size: 14px;
             font-weight: 600;
         }
+        
+        /* Module de reformulation */
+        .reformulation-module {
+            margin-top: 25px;
+            background-color: #f0f7ff;
+            border: 1px solid #c2e0ff;
+            border-radius: var(--border-radius);
+            padding: 20px;
+        }
+        
+        .reformulation-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .reformulation-header h3 {
+            color: var(--primary-color);
+            margin: 0;
+        }
+        
+        .reformulation-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .reformulation-option {
+            padding: 10px 15px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .reformulation-option:hover {
+            background-color: #e8f4fd;
+            border-color: var(--secondary-color);
+        }
+        
+        .reformulation-option.active {
+            background-color: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+        
+        .reformulation-result {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 4px;
+            border: 1px dashed #ccc;
+            min-height: 60px;
+            font-size: 14px;
+        }
+        
+        .reformulation-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn-sm {
+            padding: 8px 15px;
+            font-size: 13px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>Banque d'appréciations pour bulletins scolaires</h1>
-            <p class="subtitle">Générateur d'appréciations personnalisées pour tous les niveaux (6ème à Terminale)</p>
+            <p class="subtitle">Générateur d'appréciations personnalisées avec module de reformulation</p>
         </header>
         
         <div class="main-content">
@@ -551,7 +632,7 @@
                         </div>
                         <div class="checkbox-item">
                             <input type="checkbox" id="manque-methodologie" value="manque-methodologie">
-                            <label for="manque-methodologie">Méthode à améliorer</label>
+                            <label for="manque-methodologie">Manque de méthodologie</label>
                         </div>
                         <div class="checkbox-item">
                             <input type="checkbox" id="absenteisme" value="absenteisme">
@@ -565,14 +646,14 @@
                 </div>
                 
                 <div class="form-group custom-text-group">
-                    <label for="custom-text">Texte personnalisé :</label>
-                    <textarea id="custom-text" class="textarea-group" placeholder="Ajoutez votre texte personnalisé ici..."></textarea>
+                    <label for="custom-text">Texte personnalisé (optionnel) :</label>
+                    <textarea id="custom-text" class="textarea-group" placeholder="Ajoutez ici un texte personnalisé pour votre appréciation..."></textarea>
                 </div>
                 
                 <div class="buttons">
                     <button id="generate-btn" class="btn-primary">
                         <svg class="icon" viewBox="0 0 24 24" fill="white">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            <path d="M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L6.7 14.8c-.45-.83-.7-1.79-.7-2.8 0-3.31 2.69-6 6-6zm6.76 1.74L17.3 9.2c.44.84.7 1.79.7 2.8 0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-1.57-.46-3.03-1.24-4.26z"/>
                         </svg>
                         Générer
                     </button>
@@ -582,6 +663,32 @@
                         </svg>
                         Réinitialiser
                     </button>
+                </div>
+                
+                <div class="examples">
+                    <h3>
+                        <svg class="icon" viewBox="0 0 24 24" fill="#2c3e50">
+                            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                        </svg>
+                        Exemples d'appréciations par niveau
+                    </h3>
+                    <div class="example-item">Excellent travail tout au long du trimestre. Très bon investissement et participation active.</div>
+                    <div class="example-item">Résultats satisfaisants. Bonne attitude mais doit progresser en méthodologie.</div>
+                    <div class="example-item">Élève en difficulté qui doit absolument revoir ses méthodes de travail.</div>
+                </div>
+            </section>
+            
+            <section class="result">
+                <h2>Appréciation générée</h2>
+                <div class="character-count" id="character-count">0/255 caractères</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="appreciation-display" id="appreciation-display">
+                    Votre appréciation apparaîtra ici après avoir sélectionné les options.
+                </div>
+                
+                <div class="buttons">
                     <button id="copy-btn" class="btn-success">
                         <svg class="icon" viewBox="0 0 24 24" fill="white">
                             <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
@@ -590,41 +697,47 @@
                     </button>
                 </div>
                 
-                <div class="examples">
-                    <h3>
+                <!-- Module de reformulation -->
+                <div class="reformulation-module">
+                    <div class="reformulation-header">
                         <svg class="icon" viewBox="0 0 24 24" fill="#2c3e50">
-                            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                            <path d="M12 6v3l4-4-4-4v3c-4.42 0-8 3.58-8 8 0 1.57.46 3.03 1.24 4.26L6.7 14.8c-.45-.83-.7-1.79-.7-2.8 0-3.31 2.69-6 6-6zm6.76 1.74L17.3 9.2c.44.84.7 1.79.7 2.8 0 3.31-2.69 6-6 6v-3l-4 4 4 4v-3c4.42 0 8-3.58 8-8 0-1.57-.46-3.03-1.24-4.26z"/>
                         </svg>
-                        Exemples d'appréciations
-                    </h3>
-                    <div class="example-item">Élève sérieux(se) et appliqué(e) qui fournit un travail régulier. Résultats satisfaisants.</div>
-                    <div class="example-item">Bon potentiel mais manque de régularité dans le travail. Résultats en deçà des attentes.</div>
-                    <div class="example-item">Participation active en cours. Bonne compréhension des concepts abordés. Continue ainsi !</div>
-                </div>
-            </section>
-            
-            <section class="result">
-                <div class="form-group">
-                    <label>Appréciation générée :</label>
-                    <div id="appreciation-display" class="appreciation-display">
-                        Votre appréciation apparaîtra ici après avoir sélectionné les options.
+                        <h3>Module de reformulation</h3>
+                    </div>
+                    <p style="font-size: 14px; color: #666; margin-bottom: 15px;">Améliorez votre appréciation en choisissant une option de reformulation :</p>
+                    
+                    <div class="reformulation-options" id="reformulation-options">
+                        <div class="reformulation-option" data-type="more-positive">Plus positif</div>
+                        <div class="reformulation-option" data-type="more-constructive">Plus constructif</div>
+                        <div class="reformulation-option" data-type="simplify">Simplifier</div>
+                        <div class="reformulation-option" data-type="more-formal">Plus formel</div>
+                        <div class="reformulation-option" data-type="more-encouraging">Plus encourageant</div>
+                        <div class="reformulation-option" data-type="shorter">Raccourcir</div>
                     </div>
                     
-                    <div class="character-count" id="character-count">
-                        <span>0/255 caractères</span>
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="progress-fill"></div>
-                        </div>
+                    <div class="reformulation-result" id="reformulation-result">
+                        La reformulation apparaîtra ici après sélection d'une option.
+                    </div>
+                    
+                    <div class="reformulation-buttons">
+                        <button id="apply-reformulation" class="btn-primary btn-sm">
+                            <svg class="icon" viewBox="0 0 24 24" fill="white">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            Appliquer cette version
+                        </button>
+                        <button id="reset-reformulation" class="btn-secondary btn-sm">
+                            <svg class="icon" viewBox="0 0 24 24" fill="white">
+                                <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                            </svg>
+                            Réinitialiser
+                        </button>
                     </div>
                 </div>
                 
                 <div class="history-section">
-                    <h3>
-                        <svg class="icon" viewBox="0 0 24 24" fill="#2c3e50">
-                            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
-                        </svg>
-                        Historique (5 dernières)
-                    </h3>
+                    <h3>Historique des appréciations (5 dernières)</h3>
                     <div class="history-list" id="history-list">
                         <div class="history-item">Aucune appréciation générée récemment</div>
                     </div>
@@ -633,7 +746,7 @@
         </div>
         
         <footer>
-            <p>Banque d'appréciations pour bulletins scolaires - Tous droits réservés © 2023</p>
+            <p>Banque d'appréciations pour bulletins scolaires - Outil développé pour les enseignants</p>
         </footer>
     </div>
 
@@ -650,52 +763,58 @@
             const appreciationDisplay = document.getElementById('appreciation-display');
             const characterCount = document.getElementById('character-count');
             const progressFill = document.getElementById('progress-fill');
-            const exampleItems = document.querySelectorAll('.example-item');
             const historyList = document.getElementById('history-list');
+            const exampleItems = document.querySelectorAll('.example-item');
+            const reformulationOptions = document.querySelectorAll('.reformulation-option');
+            const reformulationResult = document.getElementById('reformulation-result');
+            const applyReformulationBtn = document.getElementById('apply-reformulation');
+            const resetReformulationBtn = document.getElementById('reset-reformulation');
             
+            // Historique
             let history = [];
+            let currentReformulation = null;
             
-            // Banque d'appréciations adaptées à tous les niveaux
+            // Appréciations de base par niveau de performance
             const appreciations = {
                 'excellent': {
                     'college': [
-                        "Excellent travail tout au long du trimestre. Très investi(e) et rigoureux(se). Continue sur cette voie !",
-                        "Élève brillant(e) qui fait preuve d'une grande curiosité. Participation toujours pertinente. Félicitations !",
-                        "Performance exceptionnelle. Très bon investissement personnel et résultats remarquables."
+                        "Excellent travail tout au long du trimestre. Très bon investissement et participation active.",
+                        "Résultats excellents témoignant d'un travail sérieux et régulier. Continue ainsi !",
+                        "Élève très performant qui fait preuve d'une grande rigueur et d'autonomie."
                     ],
                     'lycee': [
-                        "Excellents résultats témoignant d'un travail sérieux et régulier. Continue sur cette lancée !",
-                        "Élève très investi(e) qui fait preuve d'une grande rigueur scientifique. Résultats remarquables.",
-                        "Maîtrise parfaite des concepts et méthodologie irréprochable. Très bon travail."
+                        "Excellent trimestre. Maîtrise parfaite des concepts et grande capacité d'analyse.",
+                        "Travail remarquable et très rigoureux. Participation pertinente et investissement constant.",
+                        "Résultats excellents démontrant une compréhension approfondie du programme."
                     ]
                 },
                 'tres-bien': {
                     'college': [
-                        "Très bon trimestre. Investi(e) et sérieux(se), vous avez obtenu de très bons résultats.",
-                        "Travail de très bonne qualité. Participation active et constructive. Continue ainsi !",
-                        "Résultats très satisfaisants. Bonne maîtrise des compétences exigées pour ce niveau."
+                        "Très bon trimestre. Investissement régulier et résultats très satisfaisants.",
+                        "Travail sérieux et appliqué. Bonne participation et excellente attitude.",
+                        "Élève consciencieux qui obtient de très bons résultats grâce à son travail régulier."
                     ],
                     'lycee': [
-                        "Très bon trimestre. Investissement régulier et sérieux. Résultats à la hauteur des efforts.",
-                        "Travail de très bonne qualité. Bonne maîtrise des concepts abordés. Poursuivez vos efforts !",
-                        "Résultats très satisfaisants témoignant d'un travail sérieux. Attitude positive en classe."
+                        "Très bon travail ce trimestre. Bonne maîtrise des concepts et raisonnements pertinents.",
+                        "Résultats très satisfaisants. Investissement constant et bon esprit scientifique.",
+                        "Trimestre très positif. Bonne autonomie et capacité d'analyse développée."
                     ]
                 },
                 'bien': {
                     'college': [
-                        "Bon trimestre. Résultats satisfaisants mais quelques irrégularités à surveiller.",
-                        "Travail sérieux dans l'ensemble. Potential à exploiter davantage par un travail plus régulier.",
-                        "Bonnes dispositions. À consolider par un investissement plus constant dans le travail."
+                        "Bon trimestre. Résultats satisfaisants témoignant d'un travail sérieux.",
+                        "Élève appliqué qui fournit un travail régulier. Continue sur cette voie.",
+                        "Bons résultats obtenus grâce à une attitude positive et un investissement correct."
                     ],
                     'lycee': [
-                        "Trimestre satisfaisant. De bons résultats mais peut encore progresser par un travail plus approfondi.",
-                        "Bonne base de travail. Potential présent qui mériterait un investissement plus régulier.",
-                        "Résultats corrects. Doit gagner en autonomie et en rigueur pour atteindre un meilleur niveau."
+                        "Trimestre satisfaisant. Bonne compréhension globale des notions abordées.",
+                        "Travail sérieux et régulier. Résultats en progression constante.",
+                        "Bon investissement et participation active. Résultats tout à fait satisfaisants."
                     ]
                 },
                 'satisfaisant': {
                     'college': [
-                        "Trimestre satisfaisant. Efforts visibles mais résultats encore irréguliers. À consolider.",
+                        "Trimestre satisfaisant. Résultats corrects mais pouvant encore progresser.",
                         "Travail correct dans l'ensemble. Doit progresser en méthodologie pour être plus efficace.",
                         "Résultats dans la moyenne. Attitude positive mais manque parfois de régularité."
                     ],
@@ -734,11 +853,6 @@
                         "Résultats très faibles. Manque de travail évident. Situation qui nécessite une remédiation urgente.",
                         "Élève en grande difficulté. Absence de travail sérieux. Soutien indispensable.",
                         "Niveau très insuffisant. Manque total d'investissement. Situation alarmante."
-                    ],
-                    'lycee': [
-                        "Résultats très faibles ne permettant pas la validation des compétences. Efforts importants à fournir.",
-                        "Élève en très grande difficulté. Manque de travail flagrant. Situation préoccupante.",
-                        "Niveau actuel incompatible avec la poursuite dans de bonnes conditions. Travail urgent nécessaire."
                     ]
                 },
                 'manque-travail': {
@@ -746,11 +860,6 @@
                         "Potential non exploité par manque de travail régulier. Résultats ne reflètent pas vos capacités.",
                         "Manque d'investissement évident qui explique les difficultés rencontrées. À travailler davantage.",
                         "Absence de travail sérieux ayant conduit à ces résultats décevants. Changement d'attitude nécessaire."
-                    ],
-                    'lycee': [
-                        "Manque de travail compromettant la réussite. Potential présent mais non exploité.",
-                        "Investissement insuffisant ne permettant pas d'obtenir des résultats satisfaisants.",
-                        "Absence de travail régulier ayant conduit à cette situation difficile. À modifier rapidement."
                     ]
                 },
                 'insuffisant': {
@@ -758,11 +867,6 @@
                         "Résultats insuffisants nécessitant un travail approfondi des bases. Situation à améliorer rapidement.",
                         "Niveau actuel ne permettant pas la validation des compétences exigées. Efforts importants à fournir.",
                         "Difficultés majeures requérant un soutien personnalisé et un investissement conséquent."
-                    ],
-                    'lycee': [
-                        "Résultats insuffisants mettant en péril l'année scolaire. Travail urgent et approfondi nécessaire.",
-                        "Niveau incompatible avec les exigences du cycle. Remise à niveau indispensable.",
-                        "Situation critique nécessitant une remédiation immédiate et un investissement total."
                     ]
                 }
             };
@@ -802,6 +906,166 @@
                 'manque-methodologie': "Méthode de travail à améliorer.",
                 'absenteisme': "Absentéisme préjudiciable.",
                 'distraction': "Se laisse facilement distraire."
+            };
+            
+            // Dictionnaire de reformulation
+            const reformulationPatterns = {
+                'more-positive': {
+                    description: "Rendre le ton plus positif et encourageant",
+                    apply: function(text) {
+                        const replacements = {
+                            "doit améliorer": "pourrait encore progresser en",
+                            "manque de": "pourrait développer davantage son",
+                            "difficultés": "défis à surmonter",
+                            "problèmes": "points d'attention",
+                            "insuffisant": "perfectible",
+                            "faible": "en progression",
+                            "fragile": "qui nécessite un accompagnement",
+                            "à travailler davantage": "à poursuivre ses efforts",
+                            "résultats décevants": "résultats à améliorer",
+                            "situation alarmante": "situation qui mérite attention"
+                        };
+                        
+                        let result = text;
+                        for (const [old, newWord] of Object.entries(replacements)) {
+                            result = result.replace(new RegExp(old, 'gi'), newWord);
+                        }
+                        
+                        return result;
+                    }
+                },
+                'more-constructive': {
+                    description: "Formuler les critiques de manière constructive",
+                    apply: function(text) {
+                        const patterns = [
+                            { 
+                                pattern: /(doit|devrait) (améliorer|travailler) (.*)/, 
+                                replacement: "Pour progresser, je l'invite à $2 $3" 
+                            },
+                            { 
+                                pattern: /(manque de) (.*)/, 
+                                replacement: "Pourrait développer davantage son $2" 
+                            },
+                            { 
+                                pattern: /(difficultés|problèmes) (.*)/, 
+                                replacement: "Rencontre certains défis en $2 qui méritent attention" 
+                            }
+                        ];
+                        
+                        let result = text;
+                        patterns.forEach(p => {
+                            result = result.replace(p.pattern, p.replacement);
+                        });
+                        
+                        return result;
+                    }
+                },
+                'simplify': {
+                    description: "Simplifier le langage pour plus de clarté",
+                    apply: function(text) {
+                        const complexToSimple = {
+                            "témoignant d'un": "montrant un",
+                            "nécessitant un": "qui nécessite un",
+                            "requérant un": "qui demande un",
+                            "permettant de": "qui permet de",
+                            "démontrant une": "montrant une",
+                            "perfectible": "peut encore progresser",
+                            "conséquent": "important",
+                            "préjudiciable": "négatif",
+                            "indispensable": "nécessaire"
+                        };
+                        
+                        let result = text;
+                        for (const [complex, simple] of Object.entries(complexToSimple)) {
+                            result = result.replace(new RegExp(complex, 'gi'), simple);
+                        }
+                        
+                        // Raccourcir les phrases longues
+                        result = result.replace(/,\s*([^,]+),\s*/g, ', $1, ');
+                        
+                        return result;
+                    }
+                },
+                'more-formal': {
+                    description: "Rendre le ton plus formel et professionnel",
+                    apply: function(text) {
+                        const informalToFormal = {
+                            "continue ainsi": "poursuivez vos efforts",
+                            "bon travail": "travail satisfaisant",
+                            "doit": "devrait",
+                            "manque": "présente un déficit en",
+                            "problèmes": "difficultés",
+                            "assez": "relativement",
+                            "beaucoup": "considérablement",
+                            "très": "particulièrement"
+                        };
+                        
+                        let result = text;
+                        for (const [informal, formal] of Object.entries(informalToFormal)) {
+                            result = result.replace(new RegExp(informal, 'gi'), formal);
+                        }
+                        
+                        return result;
+                    }
+                },
+                'more-encouraging': {
+                    description: "Ajouter des éléments d'encouragement",
+                    apply: function(text) {
+                        const encouragingPhrases = [
+                            "Je suis convaincu(e) qu'avec de la persévérance, des progrès sont possibles.",
+                            "Avec un peu plus d'efforts, les résultats pourraient s'améliorer significativement.",
+                            "Le potential est là, il suffit de le libérer par un travail plus régulier.",
+                            "Je l'encourage à poursuivre ses efforts pour atteindre ses objectifs.",
+                            "Avec de la détermination, une belle progression est envisageable."
+                        ];
+                        
+                        // Ajouter une phrase d'encouragement à la fin si ce n'est pas déjà très positif
+                        if (!text.includes("excellent") && !text.includes("très bon")) {
+                            const randomPhrase = encouragingPhrases[Math.floor(Math.random() * encouragingPhrases.length)];
+                            return text + " " + randomPhrase;
+                        }
+                        
+                        return text;
+                    }
+                },
+                'shorter': {
+                    description: "Raccourcir l'appréciation pour respecter la limite",
+                    apply: function(text) {
+                        // Remplacer les expressions longues par des versions courtes
+                        const longToShort = {
+                            "tout au long du trimestre": "ce trimestre",
+                            "témoignant d'un travail sérieux": "montrant un bon travail",
+                            "investissement constant": "bon investissement",
+                            "participation active et pertinente": "participation active",
+                            "rigueur scientifique remarquable": "bonne rigueur",
+                            "capacité d'analyse développée": "bonne analyse",
+                            "méthodologie de travail efficace": "bonne méthode",
+                            "résultats satisfaisants": "bons résultats",
+                            "doit absolument revoir": "doit revoir",
+                            "nécessite un accompagnement personnalisé": "nécessite un accompagnement"
+                        };
+                        
+                        let result = text;
+                        for (const [long, short] of Object.entries(longToShort)) {
+                            if (result.length > 200) {
+                                result = result.replace(new RegExp(long, 'gi'), short);
+                            }
+                        }
+                        
+                        // Si c'est toujours trop long, supprimer les éléments moins importants
+                        if (result.length > 255) {
+                            // Supprimer les adverbes superflus
+                            result = result.replace(/(très|particulièrement|relativement|considérablement)\s/g, '');
+                            
+                            // Raccourcir davantage si nécessaire
+                            if (result.length > 255) {
+                                result = truncateIntelligently(result, 255);
+                            }
+                        }
+                        
+                        return result;
+                    }
+                }
             };
             
             // Fonction pour tronquer intelligemment une phrase
@@ -1003,6 +1267,7 @@
                 customTextArea.value = "";
                 appreciationDisplay.textContent = "Votre appréciation apparaîtra ici après avoir sélectionné les options.";
                 updateCharacterCount("");
+                resetReformulation();
             }
             
             // Copier l'appréciation dans le presse-papier
@@ -1037,6 +1302,72 @@
                 updateCharacterCount(exampleText);
             }
             
+            // Gestion du module de reformulation
+            function setupReformulationModule() {
+                // Événements pour les options de reformulation
+                reformulationOptions.forEach(option => {
+                    option.addEventListener('click', function() {
+                        // Retirer la classe active de toutes les options
+                        reformulationOptions.forEach(opt => opt.classList.remove('active'));
+                        // Ajouter la classe active à l'option cliquée
+                        this.classList.add('active');
+                        
+                        // Récupérer le type de reformulation
+                        const reformulationType = this.getAttribute('data-type');
+                        
+                        // Appliquer la reformulation
+                        applyReformulation(reformulationType);
+                    });
+                });
+                
+                // Appliquer la reformulation
+                applyReformulationBtn.addEventListener('click', function() {
+                    if (currentReformulation) {
+                        appreciationDisplay.textContent = currentReformulation;
+                        updateCharacterCount(currentReformulation);
+                        addToHistory(currentReformulation);
+                        
+                        // Animation
+                        appreciationDisplay.classList.add('pulse');
+                        setTimeout(() => {
+                            appreciationDisplay.classList.remove('pulse');
+                        }, 500);
+                        
+                        // Réinitialiser le module de reformulation
+                        resetReformulation();
+                    }
+                });
+                
+                // Réinitialiser le module de reformulation
+                resetReformulationBtn.addEventListener('click', resetReformulation);
+            }
+            
+            // Appliquer une reformulation
+            function applyReformulation(type) {
+                const originalText = appreciationDisplay.textContent;
+                
+                if (originalText && originalText !== "Votre appréciation apparaîtra ici après avoir sélectionné les options.") {
+                    if (reformulationPatterns[type]) {
+                        currentReformulation = reformulationPatterns[type].apply(originalText);
+                        reformulationResult.textContent = currentReformulation;
+                    }
+                } else {
+                    reformulationResult.textContent = "Veuillez d'abord générer une appréciation.";
+                }
+            }
+            
+            // Réinitialiser le module de reformulation
+            function resetReformulation() {
+                reformulationOptions.forEach(opt => opt.classList.remove('active'));
+                reformulationResult.textContent = "La reformulation apparaîtra ici après sélection d'une option.";
+                currentReformulation = null;
+            }
+            
+            // Initialisation
+            updateCharacterCount("");
+            updateHistoryDisplay();
+            setupReformulationModule();
+            
             // Événements
             generateBtn.addEventListener('click', generateAppreciation);
             resetBtn.addEventListener('click', resetForm);
@@ -1047,10 +1378,6 @@
                     applyExample(this.textContent);
                 });
             });
-            
-            // Initialisation
-            updateCharacterCount("");
-            updateHistoryDisplay();
         });
     </script>
 </body>
