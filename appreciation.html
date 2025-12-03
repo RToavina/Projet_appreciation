@@ -755,7 +755,7 @@
                     .replace(/{name}/g, name || "L'élève")
                     .replace(/{adj}/g, terms.adjective)
                     .replace(/{poss}/g, terms.possessive)
-                    .replace(/{subj}/g, name || "l'élève")
+                    .replace(/{subj}/g, terms.subject)
                     .replace(/{obj}/g, terms.object)
                     .replace(/{article}/g, terms.article)
                     .replace(/{pastParticiple}/g, terms.pastParticiple);
@@ -791,7 +791,7 @@
                 const introPhrase = adaptPhrase(performancePhrases[performance], studentName, terms);
                 appreciation += introPhrase + ' ';
                 
-                // Ajout des phrases sélectionnées
+                // Ajout des phrases sélectionnées (utiliser le pronom après l'introduction)
                 const selectedPhrases = [];
                 checkedBoxes.forEach(box => {
                     if (phrases[box.value]) {
@@ -799,16 +799,11 @@
                     }
                 });
                 
-                // Construction des phrases avec adaptation du nom et du genre
+                // Construction des phrases avec adaptation du genre
                 if (selectedPhrases.length > 0) {
-                    // Si nous avons un nom d'élève, nous l'utilisons pour la première phrase
-                    if (studentName) {
-                        appreciation += studentName + " ";
-                        appreciation += adaptPhrase(selectedPhrases[0], studentName, terms);
-                    } else {
-                        appreciation += "L'élève ";
-                        appreciation += adaptPhrase(selectedPhrases[0], studentName, terms);
-                    }
+                    // Utiliser le pronom pour toutes les phrases après l'introduction
+                    appreciation += terms.subject + " ";
+                    appreciation += adaptPhrase(selectedPhrases[0], studentName, terms);
                     
                     if (selectedPhrases.length > 1) {
                         for (let i = 1; i < selectedPhrases.length; i++) {
@@ -823,7 +818,7 @@
                     appreciation += ". ";
                 }
                 
-                // Phrase de conclusion (sans répétition du nom)
+                // Phrase de conclusion (utiliser le pronom)
                 const conclusionPhrase = adaptPhrase(conclusionPhrases[performance], studentName, terms);
                 appreciation += conclusionPhrase;
                 
